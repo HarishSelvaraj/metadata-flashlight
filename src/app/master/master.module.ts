@@ -34,7 +34,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
 export const appRoutes: Routes = [{
   path: '', component: MasterComponent, children: [
-    { path: 'document-manager', loadChildren: '../document-manager/master-document.module#MasterDocumentModule' },
+    { path: 'document-manager/:apiLink', loadChildren: '../document-manager/master-document.module#MasterDocumentModule' },
   ]
 }
 ]

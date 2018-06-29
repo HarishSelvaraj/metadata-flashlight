@@ -13,7 +13,7 @@ export class ListTableComponent implements OnInit, CompenentInterface{
   @Input() helpers;
   @ViewChild(MatPaginator) paginator1: MatPaginator;
   pageLength = 0;
-  pageSize = 3;
+  pageSize = 5;
   constructor() {
 
   }

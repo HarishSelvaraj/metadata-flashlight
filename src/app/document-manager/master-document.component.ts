@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, Input, EventEmitter, Output } from '@angular/core';
 import { MatPaginator } from '@angular/material';
 //import { ResponsiveTableHelpers } from './helpers.data';
-import { Router } from '@angular/router';
+//import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ResponseData } from './helpers.data';
 import {PageHeaderComponent} from '../shared/page-header/page-header.component';
 import {ListTableComponent} from '../shared/list-table/list-table.component';
@@ -16,11 +17,16 @@ import { GeneralServiceService } from '../services/general-service.service';
 export class MasterDocumentComponent implements OnInit {
   @Input() componentsData: Array<any> = [];
   //helpers = ResponseData;
-   helpers
-  constructor(public generalService: GeneralServiceService) { }
+  helpers
+  apiref: string
+  constructor(public generalService: GeneralServiceService, private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      this.apiref = params['apiLink'];
+    });
+  }
 
   ngOnInit() {
-    this.generalService.getSourceData().subscribe
+    this.generalService.getSourceData(this.apiref).subscribe
       (repsonse => {
         this.helpers = repsonse;
         for (let key in this.helpers.searchedResult) {
@@ -29,16 +35,15 @@ export class MasterDocumentComponent implements OnInit {
           }
           if (key == "body") {
             for (let item in this.helpers.searchedResult.body) {
-              if (this.helpers.searchedResult.body[item]._fl_elem_type == "table") {
+              if (this.helpers.searchedResult.body[item]['element']._fl_elem_type == "table") {
                 this.componentsData.push({ component: ListTableComponent, data: this.helpers.searchedResult.body[item] });
               }
             }
           }
-
         }
       });
-    
-   
+
+
     //this.helpers.forEach(items => {
 
     //});

@@ -144,7 +144,7 @@ export const ResponseData = {
         action: '<i class="nb-edit"></i>'
       }, {
           id: "02",
-          basename: "Base Name 2",
+          basename: "Base Name 2Base Name 2Base Name 2",
           database: "Database 2",
           object: "View",
           formtype: "Document Type 2",

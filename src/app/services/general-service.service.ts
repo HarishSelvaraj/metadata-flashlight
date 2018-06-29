@@ -12,14 +12,14 @@ export class GeneralServiceService {
     "database": "mssql"
   }
   GetMenuList(): Observable<any> {
-    return this.http.post(environment.apiUrl + '/getMetaTableInfo', this.params);
+    return this.http.post(environment.apiUrl + 'getMetaTableInfo', this.params);
   }
   source = {
     "documenttype": "L",
-    "documentname": "ACCOUNT_MASTER_LIST"
+    "documentname": "MASTER_DATA"
   }
-  getSourceData() {
-    return this.http.post(environment.apiUrl + '/documentmanager', this.source);
+  getSourceData(api) {
+    return this.http.post(environment.apiUrl + api, this.source);
   }
 
 }

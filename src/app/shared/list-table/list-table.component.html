@@ -2,18 +2,48 @@
   <table matSort (matSortChange)="sortData($event)">
     <thead>
       <tr>
-        <th mat-sort-header="{{th.key}}" scope="col" *ngFor="let th of helpers.records?.header">{{th.name}}</th>
+        <th mat-sort-header="{{th._fl_elem_label}}" scope="col" *ngFor="let th of helpers.records?.header">{{th._fl_elem_label}}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let row of rows let i=index">
-        <td [attr.data-label]="th.name" *ngFor="let th of helpers.records?.header">
+        <!--<td [attr.data-label]="th.name" *ngFor="let th of helpers.records?.header">
           <span *ngIf="th.key!='action'">
             {{row[th.key]}}
             <mat-chip (click)="findDuplicates(row)" selected="true" color="warn" matTooltip="{{row['duplicate_applications'].length}} duplicate entries"
                       matTooltipPosition="right" *ngIf="th.key=='applicationNumber' && row['duplicate_applications'] != 'undefined' && row['duplicate_applications'] && row['duplicate_applications'].length > 0">
               {{row['duplicate_applications'].length }}
             </mat-chip>
+          </span>
+        </td>-->
+        <td>
+          <span>
+            {{i}}
+          </span>
+        </td>
+        <td>
+          <span>
+            {{row['_fl_base_name']}}
+          </span>
+        </td>
+        <td>
+          <span>
+            {{row['_fl_doc_name']}}
+          </span>
+        </td>
+        <td>
+          <span>
+            {{row['_fl_base_table']}}
+          </span>
+        </td>
+        <td>
+          <span>
+           {{row['_fl_base_table']}}
+          </span>
+        </td>
+        <td>
+          <span>
+            
           </span>
         </td>
       </tr>
@@ -26,4 +56,6 @@
     <thead *matHeaderRowDef="displayedColumns"></thead>
     <tr *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  <mat-paginator [length]="pageLength" [pageSize]="pageSize" [pageSizeOptions]="[1, 5, 10, 25, 100, 150, 200]" (page)="next($event)">
+  </mat-paginator>
   </div>
