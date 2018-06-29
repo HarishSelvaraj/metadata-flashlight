@@ -1,0 +1,29 @@
+<div class="table-container">
+  <table matSort (matSortChange)="sortData($event)">
+    <thead>
+      <tr>
+        <th mat-sort-header="{{th.key}}" scope="col" *ngFor="let th of helpers.records?.header">{{th.name}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of rows let i=index">
+        <td [attr.data-label]="th.name" *ngFor="let th of helpers.records?.header">
+          <span *ngIf="th.key!='action'">
+            {{row[th.key]}}
+            <mat-chip (click)="findDuplicates(row)" selected="true" color="warn" matTooltip="{{row['duplicate_applications'].length}} duplicate entries"
+                      matTooltipPosition="right" *ngIf="th.key=='applicationNumber' && row['duplicate_applications'] != 'undefined' && row['duplicate_applications'] && row['duplicate_applications'].length > 0">
+              {{row['duplicate_applications'].length }}
+            </mat-chip>
+          </span>
+        </td>
+      </tr>
+      <tr *ngIf="rows?.length==0 && status==false">
+        <td [colSpan]="header.length" style="text-align: center;">
+          No records found
+        </td>
+      </tr>
+    </tbody>
+    <thead *matHeaderRowDef="displayedColumns"></thead>
+    <tr *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  </div>
