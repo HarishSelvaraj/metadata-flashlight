@@ -1,5 +1,5 @@
 <mat-form-field>
-  <mat-select placeholder="Toppings" [formControl]="topping" multiple>
-    <mat-option *ngFor="let topping of toppingLists" [value]="topping">{{topping}}</mat-option>
+  <mat-select placeholder="{{helpers.placeHolder}}"  [ngModel]="helpers.dafaultValue" [formControl]="topping">
+    <mat-option *ngFor="let topping of toppingLists" [value]="helpers.dafaultValue">{{helpers.dafaultValue}}</mat-option>
   </mat-select>
 </mat-form-field>

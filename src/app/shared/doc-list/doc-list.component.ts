@@ -23,7 +23,7 @@ export class DocListComponent implements OnInit {
     });
   }
   detailsData() {
-    this.router.navigate(['/document-manager','Accounts']);
+    this.router.navigate(['/document-manager','Employee']);
 
   }
 

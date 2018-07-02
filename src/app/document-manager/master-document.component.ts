@@ -18,6 +18,15 @@ import { SearchLayoutComponent } from '../shared/search-layout/search-layout.com
 })
 export class MasterDocumentComponent implements OnInit {
   @Input() componentsData: Array<any> = [];
+  requestDetail = {
+
+    "dbModel": "sqlModel",
+    "database": "mssql",
+    "basename": "Employee"
+
+  };
+  documentData: any;
+
   //helpers = ResponseData;
   helpers;
   sample_data = [
@@ -35,8 +44,33 @@ export class MasterDocumentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.generalService.getSourceDetails('listDocuments', this.requestDetail).subscribe
+      (repsonse => {
+        debugger;
+        this.documentData = repsonse['documents'];
+        for (let key in this.documentData['master']) {
+
+          if (this.documentData['details'].length > 0) {
+            this.documentData['master'][key].details = []
+            for (let items in this.documentData['details']) {
+              if (this.documentData['details'][items]._fl_doc_name == this.documentData['master'][key]._fl_doc_name) {
+                this.documentData['master'][key].details.push(this.documentData['details'][items]);
+              }
+            }
+          }
+          debugger;
+          if (this.documentData['master'][key]._fl_doc_type == 'S') {
+            this.componentsData.push({ component: SearchLayoutComponent, data: this.documentData['master'][key] });
+          }
+          if (this.documentData['master'][key]._fl_doc_type == 'L') {
+            this.componentsData.push({ component: ListTableComponent, data: this.documentData['master'][key] });
+          }
+        }
+
+        //this.componentsData.push({ component: ListTableComponent });
+      });
     //this.componentsData.push({ component: SearchLayoutComponent, data: this.sample_data });
-    this.componentsData.push({ component: ListTableComponent });
+    //this.componentsData.push({ component: ListTableComponent });
 
     this.generalService.currentMessage.subscribe(message => this.message = message)
     console.log('in parent componenet');

@@ -42,7 +42,8 @@ export class ListTableComponent implements OnInit, CompenentInterface {
     //  console.log('i am in list table component.');
     //  console.log(this.helpers);
     this.service.currentMessage.subscribe(message => this.message = message);
-
+    debugger;
+    this.helpers;
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
       .debounceTime(150)
@@ -59,9 +60,9 @@ export class ListTableComponent implements OnInit, CompenentInterface {
     if (this.selection.isEmpty()) { return false; }
 
     if (this.filter.nativeElement.value) {
-      return this.selection.selected.length == this.dataSource.renderedData.length;
+      return this.selection['selected'].length == this.dataSource.renderedData.length;
     } else {
-      return this.selection.selected.length == this.exampleDatabase.data.length;
+      return this.selection['selected'].length == this.exampleDatabase.data.length;
     }
   }
 

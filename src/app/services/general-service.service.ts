@@ -34,4 +34,7 @@ export class GeneralServiceService {
   getDocList(api,requestData) {
     return this.http.post(environment.apiUrl + api, requestData);
   }
+  getSourceDetails(api, requestData) {
+    return this.http.post(environment.apiUrl + api, requestData);
+  }
 }
