@@ -22,7 +22,7 @@ export class MasterDocumentComponent implements OnInit {
 
     "dbModel": "sqlModel",
     "database": "mssql",
-    "basename": "Employee"
+    "basename": ""
 
   };
   documentData: any;
@@ -39,11 +39,13 @@ export class MasterDocumentComponent implements OnInit {
 
   constructor(public generalService: GeneralServiceService, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
-      this.apiref = params['apiLink'];
+      debugger;
+      this.requestDetail.basename = params['baseName'];
     });
   }
 
   ngOnInit() {
+    
     this.generalService.getSourceDetails('listDocuments', this.requestDetail).subscribe
       (repsonse => {
         debugger;

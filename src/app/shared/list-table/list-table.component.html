@@ -1,154 +1,124 @@
-<!-- <div class="table-container">
-  <table matSort (matSortChange)="sortData($event)">
-    <thead>
-      <tr>
-        <th mat-sort-header="{{th._fl_elem_label}}" scope="col" *ngFor="let th of helpers.records?.header">{{th._fl_elem_label}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let row of rows let i=index">
-        <td>
-          <span>
-            {{i}}
-          </span>
-        </td>
-        <td>
-          <span>
-            {{row['_fl_base_name']}}
-          </span>
-        </td>
-        <td>
-          <span>
-            {{row['_fl_doc_name']}}
-          </span>
-        </td>
-        <td>
-          <span>
-            {{row['_fl_base_table']}}
-          </span>
-        </td>
-        <td>
-          <span>
-           {{row['_fl_base_table']}}
-          </span>
-        </td>
-        <td>
-          <span>
-
-          </span>
-        </td>
-      </tr>
-      <tr *ngIf="rows?.length==0 && status==false">
-        <td [colSpan]="header.length" style="text-align: center;">
-          No records found
-        </td>
-      </tr>
-    </tbody>
-    <thead *matHeaderRowDef="displayedColumns"></thead>
-    <tr *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  <mat-paginator [length]="pageLength" [pageSize]="pageSize" [pageSizeOptions]="[1, 5, 10, 25, 100, 150, 200]" (page)="next($event)">
-  </mat-paginator>
-  </div> -->
-<!-- <div class="table-container">
-    <div class="example-header" style="padding: 0 20px;">
-        <mat-form-field floatPlaceholder="never" style="color: black; width: 100%;">
-          <input matInput #filter placeholder="Filter users">
-        </mat-form-field>
-      </div>
-  <table matSort (matSortChange)="sortData($event)">
-    <thead>
-      <tr>
-        <th scope="col"> ACCOUNT NAME </th>
-        <th scope="col"> LOCATION </th>
-        <th scope="col"> DATE </th>
-        <th scope="col"> SITES </th>
-        <th scope="col"> METERS </th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <span>
-            Test account name
-          </span>
-        </td>
-        <td>
-          <span>
-            Test Location
-          </span>
-        </td>
-        <td>
-          <span>
-           Test date
-          </span>
-        </td>
-        <td>
-          <span>
-            Test site
-          </span>
-        </td>
-        <td>
-          <span>
-           Test meters
-          </span>
-        </td>
-        <td>
-          <span>
-
-          </span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  </div>  -->
-    <!--<div class="mat-elevation-z4" [fxFlex]="65">-->
-      <div class="table-container">
-        <div class="example-header" style="padding: 0 20px;">
+ 
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col" *ngFor="let th of tabledata.header">{{th.th}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of tabledata.row let i=index">
+          <td *ngFor="let th of tabledata.header">{{row[th.field]}}</td>
+        </tr>
+        <tr *ngIf="tabledata.row?.length==0">
+          <td [colSpan]="tabledata.header.length" style="text-align: center;">
+            No records found
+          </td>
+        </tr>
+      </tbody>
+      <!--<thead *matHeaderRowDef="displayedColumns"></thead>
+      <tr *matRowDef="let row; columns: displayedColumns;"></tr>-->
+    </table>
+  </div>
+  <!-- <div class="table-container">
+      <div class="example-header" style="padding: 0 20px;">
           <mat-form-field floatPlaceholder="never" style="color: black; width: 100%;">
             <input matInput #filter placeholder="Filter users">
           </mat-form-field>
         </div>
-        <mat-table #table [dataSource]="dataSource" matSort style="margin-top: 20px;">
-          <ng-container matColumnDef="userId">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> ACCOUNT NAME </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
-          </ng-container>
+    <table matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr>
+          <th scope="col"> ACCOUNT NAME </th>
+          <th scope="col"> LOCATION </th>
+          <th scope="col"> DATE </th>
+          <th scope="col"> SITES </th>
+          <th scope="col"> METERS </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span>
+              Test account name
+            </span>
+          </td>
+          <td>
+            <span>
+              Test Location
+            </span>
+          </td>
+          <td>
+            <span>
+             Test date
+            </span>
+          </td>
+          <td>
+            <span>
+              Test site
+            </span>
+          </td>
+          <td>
+            <span>
+             Test meters
+            </span>
+          </td>
+          <td>
+            <span>
+
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>  -->
+  <!--<div class="mat-elevation-z4" [fxFlex]="65">-->
+  <!--<div class="table-container">
+    <div class="example-header" style="padding: 0 20px;">
+      <mat-form-field floatPlaceholder="never" style="color: black; width: 100%;">
+        <input matInput #filter placeholder="Filter users">
+      </mat-form-field>
+    </div>
+    <mat-table #table [dataSource]="dataSource" matSort style="margin-top: 20px;">
+      <ng-container matColumnDef="userId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ACCOUNT NAME </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
 
 
-          <ng-container matColumnDef="progress">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> LOCATION </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.progress}}% </mat-cell>
-          </ng-container>
+      <ng-container matColumnDef="progress">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> LOCATION </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.progress}}% </mat-cell>
+      </ng-container>
 
-          <ng-container matColumnDef="userName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> SITES </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
-          </ng-container>
+      <ng-container matColumnDef="userName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> SITES </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+      </ng-container>
 
-          <ng-container matColumnDef="color">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> METERS </mat-header-cell>
-            <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </mat-cell>
-          </ng-container>
+      <ng-container matColumnDef="color">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> METERS </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </mat-cell>
+      </ng-container>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"
-                   [class.example-selected-row]="selection.isSelected(row.id)"
-                   (click)="selection.toggle(row.id)">
-          </mat-row>
-        </mat-table>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"
+               [class.example-selected-row]="selection.isSelected(row.id)"
+               (click)="selection.toggle(row.id)">
+      </mat-row>
+    </mat-table>
 
-        <div class="example-no-results"
-             [style.display]="dataSource?.renderedData.length == 0 ? '' : 'none'">
-          No users found matching filter.
-        </div>
+    <div class="example-no-results"
+         [style.display]="dataSource?.renderedData.length == 0 ? '' : 'none'">
+      No users found matching filter.
+    </div>
 
-        <mat-paginator #paginator
-                       [length]="100"
-                       [pageIndex]="0"
-                       [pageSize]="5"
-                       [pageSizeOptions]="[5, 10, 25, 100]">
-        </mat-paginator>
-      </div>
-    <!--</div>-->
+    <mat-paginator #paginator
+                   [length]="100"
+                   [pageIndex]="0"
+                   [pageSize]="5"
+                   [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </div>-->
+  <!--</div>-->

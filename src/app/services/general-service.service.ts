@@ -37,4 +37,7 @@ export class GeneralServiceService {
   getSourceDetails(api, requestData) {
     return this.http.post(environment.apiUrl + api, requestData);
   }
+  getUserData(api, requestData) {
+    return this.http.post(environment.apiUrl + api, requestData);
+  }
 }

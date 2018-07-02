@@ -67,8 +67,9 @@ export class DocListComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-  detailsData() {
-    this.router.navigate(['/document-manager', 'Accounts']);
+  detailsData(row) {
+    debugger;
+    this.router.navigate(['/document-manager', row._fl_base_name]);
 
   }
 
