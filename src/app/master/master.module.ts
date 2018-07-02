@@ -19,8 +19,10 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { ListComponent } from './list/list.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { UserMenuComponent } from './user-menu/user-menu.component';
-import {DocListComponent} from '../shared/doc-list/doc-list.component';
-
+import { DocListComponent } from '../shared/doc-list/doc-list.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -65,7 +67,12 @@ export const appRoutes: Routes = [{
     CommonModule,
     FlexLayoutModule,
     PerfectScrollbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatTabsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatInputModule,MatSortModule
   ],
   exports: [RouterModule],
   providers: [
