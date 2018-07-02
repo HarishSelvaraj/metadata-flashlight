@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MasterModule } from './master/master.module';
-import { ReportsComponent } from './reports/reports.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GeneralServiceService } from './services/general-service.service';
 //import { ComponentLoaderDirective } from './directives/component-loader.directive';
@@ -12,7 +11,6 @@ import { GeneralServiceService } from './services/general-service.service';
 @NgModule({
   declarations: [
     AppComponent,
-    ReportsComponent,
     //ComponentLoaderDirective
   ],
   imports: [

@@ -13,7 +13,6 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DocumentDetailsComponent } from './document-details/document-details/document-details.component';
-import { SearchComponent } from './document-details/search/search.component';
 import { ListComponent } from './document-details/list/list.component';
 import { EditComponent } from './document-details/edit/edit.component';
 import { PortfolioComponent } from './document-details/portfolio/portfolio.component';
@@ -25,6 +24,11 @@ import { SharedModule } from '../shared/shared.module';
 import { ListTableComponent } from '../shared/list-table/list-table.component';
 import {PageHeaderComponent} from '../shared/page-header/page-header.component';
 import {ComponentLoaderDirective} from '../directives/component-loader.directive';
+import { SearchLayoutComponent } from '../shared/search-layout/search-layout.component';
+import { SearchComponent } from './document-details/search/search.component';
+import { InputTextComponent } from '../shared/input-text/input-text.component';
+import { SelectComponent } from '../shared/select/select.component';
+import { SearchDocumentComponent } from '../shared/search-document/search-document.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -88,8 +92,8 @@ export const appRoutes: Routes = [
     ListComponent,
     EditComponent,
     PortfolioComponent,
-    ComponentLoaderDirective],
-  entryComponents: [PageHeaderComponent,ListTableComponent],
+    ],
+  entryComponents: [PageHeaderComponent,ListTableComponent, SearchDocumentComponent],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

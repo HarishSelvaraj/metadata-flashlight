@@ -11,7 +11,7 @@ import { MatTabsModule, MatTooltipModule,
   MatChipsModule, MatTableModule,
   MatPaginatorModule, MatSortModule,
   MatInputModule, MatSelectModule,
-  MatDividerModule, MatCheckboxModule, MatSidenavModule } from '@angular/material';
+  MatDividerModule, MatCheckboxModule, MatDialogModule, MatSidenavModule, MatCardModule, MatButtonToggleModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { RouterModule, Routes } from '@angular/router';
@@ -21,6 +21,14 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ListTableComponent } from './list-table/list-table.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
+import { SearchLayoutComponent, DialogOverviewExampleDialog } from './search-layout/search-layout.component';
+import { InputTextComponent } from './input-text/input-text.component';
+import { SelectComponent } from './select/select.component';
+import { SearchDocumentComponent } from './search-document/search-document.component';
+import { ComponentLoaderDirective } from '../directives/component-loader.directive';
+import { DatePickerComponent } from './date-picker/date-picker.component';
+import { ButtonComponent } from './button/button.component';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -32,24 +40,50 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
   declarations: [
     ListTableComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    SearchLayoutComponent,
+    InputTextComponent,
+    SelectComponent,
+    SearchDocumentComponent,
+    ComponentLoaderDirective,
+    DatePickerComponent,
+    ButtonComponent,
+    DialogOverviewExampleDialog
   ],
 
   imports: [
     CommonModule,
     MatToolbarModule,
+    MatCheckboxModule,
     MatButtonModule,
     MatSortModule,
+    MatDialogModule,
     MatChipsModule,
     MatTooltipModule,
     MatTableModule,
     FlexLayoutModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatButtonToggleModule,
+    MatInputModule,
+    MatListModule,
+    MatChipsModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [    
     ListTableComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    SearchLayoutComponent,
+    ComponentLoaderDirective
   ],
+  entryComponents: [DialogOverviewExampleDialog,SearchLayoutComponent, InputTextComponent, SelectComponent, DatePickerComponent, ButtonComponent],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

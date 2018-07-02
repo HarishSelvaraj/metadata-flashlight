@@ -15,10 +15,10 @@ export class SidemenuComponent implements OnInit {
     constructor(public generalService: GeneralServiceService) { }
 
     ngOnInit() {
-      this.generalService.GetMenuList().subscribe
-        (repsonse => {
-        this.menus = repsonse.metaDataRelatedTables;
-      });
+      // this.generalService.GetMenuList().subscribe
+      //   (repsonse => {
+      //   this.menus = repsonse.metaDataRelatedTables;
+      // });
     }
 
 }

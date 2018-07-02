@@ -1,4 +1,4 @@
-<div class="table-container">
+<!-- <div class="table-container">
   <table matSort (matSortChange)="sortData($event)">
     <thead>
       <tr>
@@ -7,15 +7,6 @@
     </thead>
     <tbody>
       <tr *ngFor="let row of rows let i=index">
-        <!--<td [attr.data-label]="th.name" *ngFor="let th of helpers.records?.header">
-          <span *ngIf="th.key!='action'">
-            {{row[th.key]}}
-            <mat-chip (click)="findDuplicates(row)" selected="true" color="warn" matTooltip="{{row['duplicate_applications'].length}} duplicate entries"
-                      matTooltipPosition="right" *ngIf="th.key=='applicationNumber' && row['duplicate_applications'] != 'undefined' && row['duplicate_applications'] && row['duplicate_applications'].length > 0">
-              {{row['duplicate_applications'].length }}
-            </mat-chip>
-          </span>
-        </td>-->
         <td>
           <span>
             {{i}}
@@ -58,4 +49,107 @@
   </table>
   <mat-paginator [length]="pageLength" [pageSize]="pageSize" [pageSizeOptions]="[1, 5, 10, 25, 100, 150, 200]" (page)="next($event)">
   </mat-paginator>
-  </div>
+  </div> -->
+
+  <!-- <div class="table-container">
+      <div class="example-header" style="padding: 0 20px;">
+          <mat-form-field floatPlaceholder="never" style="color: black; width: 100%;">
+            <input matInput #filter placeholder="Filter users">
+          </mat-form-field>
+        </div>
+    <table matSort (matSortChange)="sortData($event)">
+      <thead>
+        <tr>
+          <th scope="col"> ACCOUNT NAME </th>
+          <th scope="col"> LOCATION </th>
+          <th scope="col"> DATE </th>
+          <th scope="col"> SITES </th>
+          <th scope="col"> METERS </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span>
+              Test account name
+            </span>
+          </td>
+          <td>
+            <span>
+              Test Location
+            </span>
+          </td>
+          <td>
+            <span>
+             Test date
+            </span>
+          </td>
+          <td>
+            <span>
+              Test site
+            </span>
+          </td>
+          <td>
+            <span>
+             Test meters
+            </span>
+          </td>
+          <td>
+            <span>
+              
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>  -->
+
+    <button mat-raised-button color="primary" (click)="viewList()" >View</button>
+          <div class="table-container">
+            <div class="example-header" style="padding: 0 20px;">
+              <mat-form-field floatPlaceholder="never" style="color: black; width: 100%;">
+                <input matInput #filter placeholder="Filter users">
+              </mat-form-field>
+            </div>      
+            <mat-table #table [dataSource]="dataSource" matSort style="margin-top: 20px;">      
+              <ng-container matColumnDef="userId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> ACCOUNT NAME </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+              </ng-container>
+      
+      
+              <ng-container matColumnDef="progress">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> LOCATION </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.progress}}% </mat-cell>
+              </ng-container>
+      
+              <ng-container matColumnDef="userName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> SITES </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+              </ng-container>
+      
+              <ng-container matColumnDef="color">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> METERS </mat-header-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </mat-cell>
+              </ng-container>
+      
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"
+              [class.example-selected-row]="selection.isSelected(row.id)"
+              (click)="selection.toggle(row.id)">
+              </mat-row>
+            </mat-table>
+      
+            <div class="example-no-results"
+              [style.display]="dataSource?.renderedData.length == 0 ? '' : 'none'">
+              No users found matching filter.
+            </div>
+      
+            <mat-paginator #paginator
+              [length]="100"
+              [pageIndex]="0"
+              [pageSize]="5"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+          </div>

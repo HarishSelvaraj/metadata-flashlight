@@ -1,0 +1,21 @@
+{
+	"components" : [
+		{
+			"name": "input",
+			"placeholder": "Enter"
+		},
+		{
+			"name": "date",
+			"placeholder": "Select Date"
+		},
+		{
+			"name": "select",
+			"placeholder": "Select"
+		},
+		{
+			"name": "button",
+			"placeholder": "Search"
+		}
+	],
+	"flex": 25
+}

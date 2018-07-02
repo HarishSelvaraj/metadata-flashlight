@@ -1,0 +1,27 @@
+ <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px" fxFlexFill style="padding: 20px;">
+
+	<div fxLayout="column" style="background-color: white; padding: 10px;" fxLayoutAlign="space-between stretch" fxLayoutGap="10px"
+	 fxFlexFill>
+
+		<div fxFlexFill>
+			<div fxLayout="row" fxLayoutGap="10px" fxLayout.lt-sm="column">
+				<div class=" mat-elevation-z4" [fxFlex]="flex">
+					<mat-toolbar>
+						<h5 class="mat-title">Search</h5>
+					</mat-toolbar>
+					<div dnd-sortable-container>
+						<div *ngFor="let components of componentsData">
+							<app-search-document [components]="components"></app-search-document>							
+						</div>
+					</div>
+
+				</div>
+
+				 <div class=" mat-elevation-z4" fxFlex="75">
+					 <!-- <button mat-mini-fab color="primary" (click)="openModal()">View</button> -->
+					<app-list-table></app-list-table>
+				</div> 
+			</div>
+		</div>
+	</div>
+</div> 
