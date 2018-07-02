@@ -65,14 +65,14 @@ export class ListTableComponent implements OnInit, CompenentInterface {
      
       });
 
-    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
-      .debounceTime(150)
-      .distinctUntilChanged()
-      .subscribe(() => {
-        if (!this.dataSource) { return; }
-        this.dataSource.filter = this.filter.nativeElement.value;
-      });
+    //this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
+    //Observable.fromEvent(this.filter.nativeElement, 'keyup')
+    //  .debounceTime(150)
+    //  .distinctUntilChanged()
+    //  .subscribe(() => {
+    //    if (!this.dataSource) { return; }
+    //    this.dataSource.filter = this.filter.nativeElement.value;
+    //  });
 
   }
 
