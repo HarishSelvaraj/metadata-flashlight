@@ -19,6 +19,7 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { ListComponent } from './list/list.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { UserMenuComponent } from './user-menu/user-menu.component';
+import {DocListComponent} from '../shared/doc-list/doc-list.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -34,8 +35,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
 export const appRoutes: Routes = [{
   path: '', component: MasterComponent, children: [
+    { path: 'document-list', component: DocListComponent },
     //{ path: 'document-manager/:apiLink', loadChildren: '../document-manager/master-document.module#MasterDocumentModule' },
-    { path: 'document-manager', loadChildren: '../document-manager/master-document.module#MasterDocumentModule' },
+    { path: 'document-manager/:baseName', loadChildren: '../document-manager/master-document.module#MasterDocumentModule' },
   ]
 }
 ]
@@ -48,7 +50,8 @@ export const appRoutes: Routes = [{
     SidemenuItemComponent,
     ListComponent,
     ToolbarComponent,
-    UserMenuComponent
+    UserMenuComponent,
+    DocListComponent
   ],
 
   imports: [
