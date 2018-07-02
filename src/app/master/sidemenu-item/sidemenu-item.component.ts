@@ -19,7 +19,7 @@ export class SidemenuItemComponent implements OnInit {
     }
     nav(apiLink: string) {
      // this.router.navigate(['/document-manager', apiLink.split('/')[apiLink.split('/').length - 1]]);
-     this.router.navigate(['/document-manager']);
+     this.router.navigate(['/document-list']);
     }
     openLink() {
         this.menu.open = this.menu.open

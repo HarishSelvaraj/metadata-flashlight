@@ -3,6 +3,7 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { CompenentInterface } from '../component.interface';
 import { ExampleDataSource, ExampleDatabase } from './helper.data';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
 import { SelectionModel } from '@angular/cdk/collections';
 import { SearchLayoutComponent } from '../search-layout/search-layout.component';
 import { SearchComponent } from '../../document-manager/document-details/search/search.component';

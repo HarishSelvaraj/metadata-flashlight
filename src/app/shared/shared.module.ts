@@ -28,8 +28,10 @@ import { SearchDocumentComponent } from './search-document/search-document.compo
 import { ComponentLoaderDirective } from '../directives/component-loader.directive';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { ButtonComponent } from './button/button.component';
-import { LabelComponent } from './label/label.component';
+//import { DocListComponent } from './doc-list/doc-list.component'; 
+  import { LabelComponent } from './label/label.component';
 import { TextareaComponent } from './textarea/textarea.component';
+
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
