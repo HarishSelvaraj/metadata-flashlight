@@ -28,6 +28,7 @@ import { SearchDocumentComponent } from './search-document/search-document.compo
 import { ComponentLoaderDirective } from '../directives/component-loader.directive';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { ButtonComponent } from './button/button.component';
+//import { DocListComponent } from './doc-list/doc-list.component'; 
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {

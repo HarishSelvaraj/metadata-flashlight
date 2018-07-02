@@ -31,5 +31,7 @@ export class GeneralServiceService {
   changeMessage(message: string) {
     this.messageSource.next(message)
   }
-
+  getDocList(api,requestData) {
+    return this.http.post(environment.apiUrl + api, requestData);
+  }
 }
