@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ComponentFac
 import { MatPaginator } from '@angular/material';
 import { ResponseData } from '../helpers.data';
 import { Router, ActivatedRoute } from '@angular/router';
-import {MasterDocumentComponent} from '../master-document.component';
-import {ComponentLoaderDirective} from '../../directives/component-loader.directive';
+import { MasterDocumentComponent } from '../master-document.component';
+import { ComponentLoaderDirective } from '../../directives/component-loader.directive';
 import { ListTableComponent } from '../../shared/list-table/list-table.component';
-import {CompenentInterface} from '../../shared/component.interface';
+import { CompenentInterface } from '../../shared/component.interface';
 
 @Component({
   selector: 'app-document-manager',
@@ -36,9 +36,10 @@ export class DocumentManagerComponent implements OnInit {
     //});
   }
 
-  
+
 
   ngOnInit() {
+
     this.loadComponent();
     //this.getRows();
   }

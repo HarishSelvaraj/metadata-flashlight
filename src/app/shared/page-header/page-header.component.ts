@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material';
-import {CompenentInterface} from '../component.interface';
+import { CompenentInterface } from '../component.interface';
 
 
 @Component({
@@ -8,14 +8,14 @@ import {CompenentInterface} from '../component.interface';
   templateUrl: './page-header.component.html',
   styleUrls: ['./page-header.component.scss']
 })
-export class PageHeaderComponent implements OnInit,CompenentInterface {
+export class PageHeaderComponent implements OnInit, CompenentInterface {
   rows: Array<any> = [];
   @Input() helpers;
   @ViewChild(MatPaginator) paginator1: MatPaginator;
   pageLength = 0;
   pageSize = 3;
   constructor() {
-   
+
   }
 
   ngOnInit() {
