@@ -1,48 +1,30 @@
-<button mat-raised-button color="primary" (click)="detailsData()">View</button>
-<!--<div class="table-container">
-  <div class="example-header" style="padding: 0 20px;">
-    <mat-form-field floatPlaceholder="never" style="color: black; width: 100%;">
-      <input matInput #filter placeholder="Filter users">
-    </mat-form-field>
+<div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px" fxFlexFill style="padding: 20px;">
+  <div fxLayout="column" style="background-color: white; padding: 10px;" fxLayoutAlign="space-between stretch" fxLayoutGap="5px">
+    <mat-toolbar fxFlex="auto">
+      <h3 style="margin-left: 16px;" class="mat-heading"> Base List </h3>
+      <span class="spacer"></span>
+    </mat-toolbar>
+    <div class="example-header" fxFlex="auto" style="padding-top:15px;">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
+    <div class="example-container mat-elevation-z8">
+      <mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="sno">
+          <mat-header-cell *matHeaderCellDef mat-sort-header scope="col">SERIAL NO </mat-header-cell>
+          <mat-cell *matCellDef="let row" class="centers"> {{row.sno}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="basename">
+          <mat-header-cell *matHeaderCellDef mat-sort-header scope="col"> BASE NAME </mat-header-cell>
+          <mat-cell *matCellDef="let row" class="centers"> {{row._fl_base_name}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+      </mat-table>
+      <mat-paginator #paginator [length]="100" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+    </div>
   </div>
-  <mat-table #table [dataSource]="dataSource" matSort style="margin-top: 20px;">
-    <ng-container matColumnDef="userId">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ACCOUNT NAME </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
-    </ng-container>
-
-
-    <ng-container matColumnDef="progress">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> LOCATION </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.progress}}% </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="userName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> SITES </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="color">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> METERS </mat-header-cell>
-      <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"
-             [class.example-selected-row]="selection.isSelected(row.id)"
-             (click)="selection.toggle(row.id)">
-    </mat-row>
-  </mat-table>
-
-  <div class="example-no-results"
-       [style.display]="dataSource?.renderedData.length == 0 ? '' : 'none'">
-    No users found matching filter.
-  </div>
-
-  <mat-paginator #paginator
-                 [length]="100"
-                 [pageIndex]="0"
-                 [pageSize]="5"
-                 [pageSizeOptions]="[5, 10, 25, 100]">
-  </mat-paginator>
-</div>-->
+</div>
