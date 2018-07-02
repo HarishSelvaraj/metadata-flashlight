@@ -29,6 +29,9 @@ import { ComponentLoaderDirective } from '../directives/component-loader.directi
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { ButtonComponent } from './button/button.component';
 //import { DocListComponent } from './doc-list/doc-list.component'; 
+  import { LabelComponent } from './label/label.component';
+import { TextareaComponent } from './textarea/textarea.component';
+
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -49,7 +52,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ComponentLoaderDirective,
     DatePickerComponent,
     ButtonComponent,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    LabelComponent,
+    TextareaComponent
   ],
 
   imports: [
@@ -84,7 +89,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SearchLayoutComponent,
     ComponentLoaderDirective
   ],
-  entryComponents: [DialogOverviewExampleDialog,SearchLayoutComponent, InputTextComponent, SelectComponent, DatePickerComponent, ButtonComponent],
+  entryComponents: [DialogOverviewExampleDialog,SearchLayoutComponent, InputTextComponent, 
+    SelectComponent, DatePickerComponent, ButtonComponent, LabelComponent, TextareaComponent],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
