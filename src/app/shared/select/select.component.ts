@@ -9,11 +9,13 @@ import { FormControl } from '@angular/forms';
 export class SelectComponent implements OnInit {
 
   topping = new FormControl();
-  toppingLists = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  toppingLists = [];
 
   constructor() { }
-
+  helpers;
   ngOnInit() {
+    debugger;
+    this.helpers;
   }
 
 }

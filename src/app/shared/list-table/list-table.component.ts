@@ -8,6 +8,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { SearchLayoutComponent } from '../search-layout/search-layout.component';
 import { SearchComponent } from '../../document-manager/document-details/search/search.component';
 import { GeneralServiceService } from '../../services/general-service.service';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-list-table',
@@ -21,7 +22,14 @@ export class ListTableComponent implements OnInit, CompenentInterface {
   @ViewChild(MatPaginator) paginator1: MatPaginator;
   pageLength = 0;
   pageSize = 5;
+  tabledata: any = { header: [], row: [] };
+  reqData = {
 
+    "dbModel": "sqlModel",
+    "database": "mssql",
+    "tablename": ""
+
+  }
   // raji added
   @Input() componentsData: Array<any> = [];
   displayedColumns = ['userId', 'userName', 'progress', 'color'];
@@ -42,15 +50,29 @@ export class ListTableComponent implements OnInit, CompenentInterface {
     //  console.log('i am in list table component.');
     //  console.log(this.helpers);
     this.service.currentMessage.subscribe(message => this.message = message);
-
-    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-    Observable.fromEvent(this.filter.nativeElement, 'keyup')
-      .debounceTime(150)
-      .distinctUntilChanged()
-      .subscribe(() => {
-        if (!this.dataSource) { return; }
-        this.dataSource.filter = this.filter.nativeElement.value;
+    debugger;
+    this.helpers;
+    for (let key in this.helpers.details) {
+      this.tabledata.header.push({ th: this.helpers.details[key]._fl_elem_label, field: this.helpers.details[key]._fl_elem_name})
+    }
+    this.reqData.tablename = this.helpers._fl_base_table;
+    this.service.getUserData('listItems', this.reqData).subscribe
+      (repsonse => {
+        this.helpers;
+          this.tabledata.row = repsonse['items'].metaDataResult;
+          
+          //this.dataSource = new MatTableDataSource(this.tabledata);
+     
       });
+
+    //this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
+    //Observable.fromEvent(this.filter.nativeElement, 'keyup')
+    //  .debounceTime(150)
+    //  .distinctUntilChanged()
+    //  .subscribe(() => {
+    //    if (!this.dataSource) { return; }
+    //    this.dataSource.filter = this.filter.nativeElement.value;
+    //  });
 
   }
 
@@ -59,9 +81,9 @@ export class ListTableComponent implements OnInit, CompenentInterface {
     if (this.selection.isEmpty()) { return false; }
 
     if (this.filter.nativeElement.value) {
-      return this.selection.selected.length == this.dataSource.renderedData.length;
+      return this.selection['selected'].length == this.dataSource.renderedData.length;
     } else {
-      return this.selection.selected.length == this.exampleDatabase.data.length;
+      return this.selection['selected'].length == this.exampleDatabase.data.length;
     }
   }
 
