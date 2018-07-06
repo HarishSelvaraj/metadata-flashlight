@@ -21,7 +21,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ListTableComponent } from './list-table/list-table.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
-import { SearchLayoutComponent, DialogOverviewExampleDialog } from './search-layout/search-layout.component';
+import { SearchLayoutComponent } from './search-layout/search-layout.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { SelectComponent } from './select/select.component';
 import { SearchDocumentComponent } from './search-document/search-document.component';
@@ -31,6 +31,7 @@ import { ButtonComponent } from './button/button.component';
 //import { DocListComponent } from './doc-list/doc-list.component'; 
   import { LabelComponent } from './label/label.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 
@@ -52,9 +53,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ComponentLoaderDirective,
     DatePickerComponent,
     ButtonComponent,
-    DialogOverviewExampleDialog,
     LabelComponent,
-    TextareaComponent
+    TextareaComponent,
+    ModalComponent
   ],
 
   imports: [
@@ -89,8 +90,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SearchLayoutComponent,
     ComponentLoaderDirective
   ],
-  entryComponents: [DialogOverviewExampleDialog,SearchLayoutComponent, InputTextComponent, 
-    SelectComponent, DatePickerComponent, ButtonComponent, LabelComponent, TextareaComponent],
+  entryComponents: [SearchLayoutComponent, InputTextComponent, 
+    SelectComponent, DatePickerComponent, ButtonComponent, LabelComponent, 
+    TextareaComponent, ModalComponent],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

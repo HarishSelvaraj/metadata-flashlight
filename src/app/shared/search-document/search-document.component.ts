@@ -26,8 +26,6 @@ export class SearchDocumentComponent implements OnInit {
     viewContainerRef.clear();
     let componentRef = viewContainerRef.createComponent(componentFactory);
     (<CompenentInterface>componentRef.instance).helpers = this.components.data;
-    console.log('i am in search document compoenent');
-    console.log(this.components.data);
   }
 
 }
