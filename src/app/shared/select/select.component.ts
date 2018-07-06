@@ -14,7 +14,7 @@ export class SelectComponent implements OnInit {
   constructor() { }
   helpers;
   ngOnInit() {
-    debugger;
+  //  debugger;
     this.helpers;
   }
 
