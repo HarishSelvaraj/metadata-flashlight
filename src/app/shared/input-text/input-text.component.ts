@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DocumentManagerService } from '../../document-manager/services/document-manager.service';
 
 @Component({
   selector: 'app-input-text',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input-text.component.scss']
 })
 export class InputTextComponent implements OnInit {
-
-  constructor() { }
-  helpers
+  inputValue;
+  constructor(private documentManagerService: DocumentManagerService) { }
+  helpers;
   ngOnInit() {
+    //this.documentManagerService.setSearchObject(input);
+   // console.log(this.helpers.masterData);
+  }
+
+  setInput() {
+    console.log('in i/p componenet');
+    let input = { [this.helpers.elementName]: (<HTMLInputElement>event.target).value }
+    this.documentManagerService['searchData'][this.helpers.elementName] = (<HTMLInputElement>event.target).value;
   }
 
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
@@ -9,8 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class GeneralServiceService {
   //10.91.16.195:3002/meta/getMetaTableInfo
 
-  private messageSource = new BehaviorSubject('default message');
-  currentMessage = this.messageSource.asObservable();
+  langUpdated = new EventEmitter();
 
   constructor(public http: HttpClient) { }
   params = {
@@ -27,17 +26,43 @@ export class GeneralServiceService {
   getSourceData(api) {
     return this.http.post(environment.apiUrl + api, this.source);
   }
-
-  changeMessage(message: string) {
-    this.messageSource.next(message)
-  }
-  getDocList(api,requestData) {
+  getDocList(api, requestData) {
     return this.http.post(environment.apiUrl + api, requestData);
   }
   getSourceDetails(api, requestData) {
     return this.http.post(environment.apiUrl + api, requestData);
   }
-  getUserData(api, requestData) {
+  getUserData(api, requestData,searchtype) {
+    let reqData;
+    if(searchtype=='searchList'){
+     reqData = {
+
+      "dbModel": "sqlModel",
+      "database": "mssql",
+      "tablename": requestData.baseTable,
+      "params": {}
+
+    }
+
+    for (let key in requestData) {
+      if (key != "baseTable") {
+        if(requestData[key]!=""){
+        reqData['params'][key] = requestData[key];
+      }
+
+      }
+
+    }
+  }else{
+    reqData=requestData;
+  }
+   // debugger;
+    return this.http.post(environment.apiUrl + api, reqData);
+  }
+  searchUsesData(api, requestData) {
     return this.http.post(environment.apiUrl + api, requestData);
+  }
+  searchTable() {
+    this.langUpdated.emit('search');
   }
 }

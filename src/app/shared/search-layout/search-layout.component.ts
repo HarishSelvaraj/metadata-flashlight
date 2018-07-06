@@ -31,20 +31,20 @@ export class SearchLayoutComponent implements OnInit {
   constructor(private http: HttpClient, public dialog: MatDialog) { }
 
   ngOnInit() {
-    debugger;
+    //debugger;
     for (let key in this.helpers.details) {
-
+  // debugger;
       if (this.helpers.details[key]._fl_elem_type == "SELECT") {
-        this.componentsData.push({ component: SelectComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label} });
+        this.componentsData.push({ component: SelectComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label, elementName: this.helpers.details[key]._fl_elem_name,baseTable:this.helpers['_fl_base_table'] } });
       }
       if (this.helpers.details[key]._fl_elem_type == "TEXT") {
-        this.componentsData.push({ component: InputTextComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label } });
+        this.componentsData.push({ component: InputTextComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label, elementName: this.helpers.details[key]._fl_elem_name,baseTable:this.helpers['_fl_base_table'] } });
       }
       if (this.helpers.details[key]._fl_elem_type == "LABEL") {
-        this.componentsData.push({ component: LabelComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label } });
+        this.componentsData.push({ component: LabelComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label, elementName: this.helpers.details[key]._fl_elem_name,baseTable:this.helpers['_fl_base_table'] } });
       }
       if (this.helpers.details[key]._fl_elem_type == "TEXTAREA") {
-        this.componentsData.push({ component: TextareaComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label } });
+        this.componentsData.push({ component: TextareaComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label, elementName: this.helpers.details[key]._fl_elem_name,baseTable:this.helpers['_fl_base_table'] } });
       }
       if (this.helpers.details[key]._fl_elem_type == "TEXTAREA") {
         this.componentsData.push({ component: TextareaComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label } });
@@ -53,13 +53,13 @@ export class SearchLayoutComponent implements OnInit {
         this.componentsData.push({ component: NumberComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label } });
       }
       if (this.helpers.details[key]._fl_elem_type == "BUTTON") {
-        this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label } });
+        this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label, elementName: this.helpers.details[key]._fl_elem_name,baseTable:this.helpers['_fl_base_table'] } });
       } else {
         this.btn = true;
       }
     }
-    if (this.btn){
-      this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: '', placeHolder: 'search' } });
+    if (this.btn) {
+      this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: '', placeHolder: 'Search', searchDetailsInd: true } });
     }
     this.helpers.details;
     //this.http.get("./assets/files/sample-components.json").subscribe
@@ -82,34 +82,5 @@ export class SearchLayoutComponent implements OnInit {
     //    }
     //  });
   }
-
-  openModal(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
-      data: {name: this.name, animal: this.animal}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
-  }
-
 }
 
-
-@Component({
-  selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog.html',
-})
-export class DialogOverviewExampleDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-}
