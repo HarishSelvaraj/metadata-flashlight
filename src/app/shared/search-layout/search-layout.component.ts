@@ -6,6 +6,7 @@ import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { ButtonComponent } from '../button/button.component';
 import { TextareaComponent } from '../textarea/textarea.component';
 import { LabelComponent } from '../label/label.component';
+import { NumberComponent } from '../number/number.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
@@ -44,6 +45,12 @@ export class SearchLayoutComponent implements OnInit {
       }
       if (this.helpers.details[key]._fl_elem_type == "TEXTAREA") {
         this.componentsData.push({ component: TextareaComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label } });
+      }
+      if (this.helpers.details[key]._fl_elem_type == "TEXTAREA") {
+        this.componentsData.push({ component: TextareaComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label } });
+      }
+      if (this.helpers.details[key]._fl_elem_type == "NUMBER") {
+        this.componentsData.push({ component: NumberComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label } });
       }
       if (this.helpers.details[key]._fl_elem_type == "BUTTON") {
         this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label } });
