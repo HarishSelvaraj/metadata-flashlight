@@ -46,11 +46,11 @@ export class SearchLayoutComponent implements OnInit {
       if (this.helpers.details[key]._fl_elem_type == "TEXTAREA") {
         this.componentsData.push({ component: TextareaComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label, elementName: this.helpers.details[key]._fl_elem_name,baseTable:this.helpers['_fl_base_table'] } });
       }
-      if (this.helpers.details[key]._fl_elem_type == "TEXTAREA") {
-        this.componentsData.push({ component: TextareaComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label } });
+      if (this.helpers.details[key]._fl_elem_type == "DATE" || this.helpers.details[key]._fl_elem_type == "DATETIME") {
+        this.componentsData.push({ component: DatePickerComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label, elementName: this.helpers.details[key]._fl_elem_name, baseTable: this.helpers['_fl_base_table'] } });
       }
       if (this.helpers.details[key]._fl_elem_type == "NUMBER") {
-        this.componentsData.push({ component: NumberComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label } });
+        this.componentsData.push({ component: NumberComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label, elementName: this.helpers.details[key]._fl_elem_name, baseTable: this.helpers['_fl_base_table'] } });
       }
       if (this.helpers.details[key]._fl_elem_type == "BUTTON") {
         this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label, elementName: this.helpers.details[key]._fl_elem_name,baseTable:this.helpers['_fl_base_table'] } });

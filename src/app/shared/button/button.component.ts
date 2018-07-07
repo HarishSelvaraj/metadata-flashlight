@@ -35,7 +35,6 @@ export class ButtonComponent implements OnInit {
         data: { name: 'Details of the form:' }
       });
     } else if (this.helpers.searchDetailsInd == true) {
-      alert('search success');
       this.service.searchTable();
       //this.documentManagerService.searchEvent();
       
