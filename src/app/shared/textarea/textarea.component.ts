@@ -13,8 +13,8 @@ export class TextareaComponent implements OnInit {
   ngOnInit() {
   }
   setInput() {
-    console.log('in i/p componenet');
     let input = { [this.helpers.elementName]: (<HTMLInputElement>event.target).value }
     this.documentManagerService['searchData'][this.helpers.elementName] = (<HTMLInputElement>event.target).value;
   }
+
 }

@@ -10,6 +10,9 @@ export class GeneralServiceService {
   //10.91.16.195:3002/meta/getMetaTableInfo
 
   langUpdated = new EventEmitter();
+  add = new EventEmitter();
+  closeModal = new EventEmitter();
+
 
   constructor(public http: HttpClient) { }
   params = {
@@ -32,31 +35,26 @@ export class GeneralServiceService {
   getSourceDetails(api, requestData) {
     return this.http.post(environment.apiUrl + api, requestData);
   }
-  getUserData(api, requestData,searchtype) {
+  getUserData(api, requestData, searchtype) {
     let reqData;
-    if(searchtype=='searchList'){
-     reqData = {
-
-      "dbModel": "sqlModel",
-      "database": "mssql",
-      "tablename": requestData.baseTable,
-      "params": {}
-
-    }
-
-    for (let key in requestData) {
-      if (key != "baseTable") {
-        if(requestData[key]!=""){
-        reqData['params'][key] = requestData[key];
+    if (searchtype == 'searchList' || searchtype == 'addUserList') {
+      reqData = {
+        "dbModel": "sqlModel",
+        "database": "mssql",
+        "tablename": requestData.baseTable,
+        "params": {}
       }
 
+      for (let key in requestData) {
+        if (key != "baseTable") {
+          if (requestData[key] != "") {
+            reqData['params'][key] = requestData[key];
+          }
+        }
       }
-
+    } else {
+      reqData = requestData;
     }
-  }else{
-    reqData=requestData;
-  }
-   // debugger;
     return this.http.post(environment.apiUrl + api, reqData);
   }
   searchUsesData(api, requestData) {
@@ -64,5 +62,14 @@ export class GeneralServiceService {
   }
   searchTable() {
     this.langUpdated.emit('search');
+  }
+
+  addUser() {
+    this.add.emit('add');
+  }
+
+  closeModalAfterAdd() {
+    console.log('in closeModalAfterAdd inside service');
+    this.closeModal.emit('close');
   }
 }
