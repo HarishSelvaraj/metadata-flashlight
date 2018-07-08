@@ -1,8 +1,13 @@
 
+
+<div [fxLayout]="row">
   <div *ngFor="let components of componentsData">
     <app-document-manager [components]="components"></app-document-manager>
   </div>
-<!-- <div *ngFor="let components of componentsData">
-  <app-document-manager *ngIf="components.data._fl_doc_type=='S'" [components]="components"></app-document-manager>
-  <app-document-manager *ngIf="components.data._fl_doc_type=='L'" [components]="components"></app-document-manager>
-</div> -->
+</div>  
+
+
+
+
+
+

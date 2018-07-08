@@ -25,7 +25,7 @@ table {
 table caption {
   font-size: 1.5em;
   margin: .5em 0 .75em;
-  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-family: opensans, sans-serif;
 }
 
 table tr {
@@ -35,12 +35,12 @@ table tr {
 }
 
 table tr:nth-child(odd) td {
-  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-family: opensans, sans-serif;
 }
 
 table tr:nth-child(even) td {
   background: rgba(145, 151, 187, 0.34);
-  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-family: opensans, sans-serif;
 }
 
 /deep/ .mat-sort-header-container {
@@ -49,16 +49,16 @@ table tr:nth-child(even) td {
 
 table th,
 table td {
-  word-wrap: break-word;
   padding: .625em;
   text-align: center;
-  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-family: opensans, sans-serif;
 }
 
 table th {
   background: #cfcfcf;
-  font-size: .85em;
-  letter-spacing: .1em;
+  font-size: 14px;
+  // letter-spacing: .1em;
+  white-space: nowrap;
   text-transform: uppercase;
 }
 

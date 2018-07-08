@@ -31,6 +31,7 @@ export class SearchLayoutComponent implements OnInit {
   constructor(private http: HttpClient, public dialog: MatDialog) { }
 
   ngOnInit() {
+
     for (let key in this.helpers.details) {
       if (this.helpers.details[key]._fl_elem_type == "SELECT") {
         this.componentsData.push({ component: SelectComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label, elementName: this.helpers.details[key]._fl_elem_name,baseTable:this.helpers['_fl_base_table'] } });
