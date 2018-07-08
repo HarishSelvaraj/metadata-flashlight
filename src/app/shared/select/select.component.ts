@@ -15,7 +15,6 @@ export class SelectComponent implements OnInit {
   constructor(private documentManagerService: DocumentManagerService) { }
   helpers;
   ngOnInit() {
-  //  debugger;
     this.helpers;
   }
   setInput() {

@@ -41,18 +41,16 @@ export class MasterDocumentComponent implements OnInit {
 
   constructor(public generalService: GeneralServiceService, private route: ActivatedRoute, private documentManagerService: DocumentManagerService) {
     this.route.params.subscribe(params => {
-    // debugger;
       this.requestDetail.basename = params['baseName'];
     });
   }
 
   ngOnInit() {
 
-   
-    
+
+
     this.generalService.getSourceDetails('listDocuments', this.requestDetail).subscribe
       (repsonse => {
-      //  debugger;
         this.documentData = repsonse['documents'];
         for (let key in this.documentData['master']) {
 
@@ -64,17 +62,18 @@ export class MasterDocumentComponent implements OnInit {
               }
             }
           }
-          debugger;
+          if (this.documentData['master'][key]._fl_doc_type == 'E') {
+            this.documentManagerService.searchData['baseTable'] = this.documentData['master'][key]._fl_base_table;
+            // this.componentsData.push({ component: ButtonComponent, data: this.documentData['master'][key] });
+            this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: '', placeHolder: 'Edit', editDetailsInd: true, editDetails: this.documentData['master'][key] } });
+          }
           if (this.documentData['master'][key]._fl_doc_type == 'S') {
-          this.documentManagerService.searchData['baseTable']=this.documentData['master'][key]._fl_base_table;
-            this.componentsData.push({ component: SearchLayoutComponent, data: this.documentData['master'][key]});
+            this.documentManagerService.searchData['baseTable'] = this.documentData['master'][key]._fl_base_table;
+            this.componentsData.push({ component: SearchLayoutComponent, data: this.documentData['master'][key] });
           }
           if (this.documentData['master'][key]._fl_doc_type == 'L') {
+            this.documentManagerService.searchData['baseTable'] = this.documentData['master'][key]._fl_base_table;
             this.componentsData.push({ component: ListTableComponent, data: this.documentData['master'][key] });
-          }
-          if (this.documentData['master'][key]._fl_doc_type == 'E') {
-           // this.componentsData.push({ component: ButtonComponent, data: this.documentData['master'][key] });
-           this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: '', placeHolder: 'Edit', editDetailsInd: true ,editDetails: this.documentData['master'][key]} });
           }
         }
       });

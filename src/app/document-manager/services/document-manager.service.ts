@@ -17,11 +17,7 @@ export class DocumentManagerService {
     }
 
     setSearchObject(search) {
-     //   console.log('in soc manager service');
         this.searchData.push(search);
-      //  console.log(this.searchData);
-       
-
     }
 
     getSearchObject() {
@@ -30,5 +26,10 @@ export class DocumentManagerService {
 
     searchEvent() {
         this.searchObject.emit();
+    }
+
+    clearSearchObject() {
+        this.searchData = [];
+        return this.searchData;
     }
 }

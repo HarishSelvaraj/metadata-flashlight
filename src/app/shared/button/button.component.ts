@@ -28,17 +28,17 @@ export class ButtonComponent implements OnInit {
   }
 
   buttonAction() {
+    console.log(this.helpers);
     if (this.helpers.editDetailsInd == true) {
       const dialogRef = this.dialog.open(ModalComponent, {
-        width: '700px',
+        width: '300px',
         height: '500px',
-        data: { name: 'Details of the form:' }
+        data: this.helpers.editDetails
       });
     } else if (this.helpers.searchDetailsInd == true) {
       this.service.searchTable();
-      //this.documentManagerService.searchEvent();
-      
-
+    } else if(this.helpers.addUserInd == true) {
+      this.service.addUser();
     }
   }
 }

@@ -1,3 +1,5 @@
-<p>
-  modal works!
-</p>
+<!-- <button mat-button [mat-dialog-close]="true">Close</button> -->
+<mat-icon class="mat-icon material-icons" (click)="close()">close</mat-icon>
+<div *ngFor="let components of componentsData">
+  <app-search-document [components]="components"></app-search-document>
+</div>
