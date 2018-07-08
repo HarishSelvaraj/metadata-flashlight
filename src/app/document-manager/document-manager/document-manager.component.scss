@@ -28,7 +28,7 @@ table tr {
     background: #f8f8f8;
     border: 1px solid #ddd;
     padding: .35em;
-    word-wrap: normal;
+    // word-wrap: normal;
 }
 table tr:nth-child(odd) td{
     font-family:Roboto,"Helvetica Neue",sans-serif;
@@ -41,13 +41,17 @@ table tr:nth-child(even) td{
         justify-content: center;
 }
 
+th.ng-star-inserted {
+    word-wrap: break-word !important;
+}
+
 table th,
 table td {
     padding: .625em;
     text-align: center;
     font-family: 'Open Sans',sans-serif;
     // font-family:Roboto,"Helvetica Neue",sans-serif;
-    word-wrap: normal;
+    word-wrap: break-word;
 }
 table th {
     background:#cfcfcf;
@@ -71,7 +75,7 @@ table th {
         padding: 0;
         position: absolute;
         width: 1px;
-        word-wrap: normal;
+        word-wrap: break-word;
     }
     table tr {
         border-bottom: 3px solid #ddd;
@@ -83,7 +87,7 @@ table th {
         display: block;
         font-size: .8em;
         text-align: right;
-        word-wrap: normal;
+        // word-wrap: normal;
     }
     table td:before {
         /*

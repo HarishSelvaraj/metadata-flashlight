@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let row of tabledata.row let i=index">
-          <td *ngFor="let th of tabledata.header">{{row[th.field]}}</td>
+          <td class="tdwrap" *ngFor="let th of tabledata.header">{{row[th.field]}}</td>
         </tr>
         <tr *ngIf="tabledata.row?.length==0">
           <td [colSpan]="tabledata.header.length" style="text-align: center;">
