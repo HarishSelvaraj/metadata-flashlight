@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DocumentManagerService } from '../../document-manager/services/document-manager.service';
 
 @Component({
   selector: 'app-date-picker',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatePickerComponent implements OnInit {
 
-  constructor() { }
+  helpers;
+  constructor(private documentManagerService: DocumentManagerService) { }
 
   ngOnInit() {
+    console.log('date picker compoenent');
+    console.log(this.helpers);
+  }
+
+  setInput() {
+    console.log('set input ()');
+    console.log(this.helpers.elementName);
+    this.documentManagerService['searchData'][this.helpers.elementName] = this.helpers.dafaultValue;
   }
 
 }

@@ -20,6 +20,8 @@ export class InputTextComponent implements OnInit, OnChanges {
     // setInterval(() => {
     //   this.setInput();
     // }, 500);
+    this.documentManagerService['searchData'][this.helpers.elementName] = this.helpers.dafaultValue;
+    console.log(this.documentManagerService.searchData);
   }
   ngOnChanges(changes: SimpleChanges) {
     console.log('in i/p componenet');
@@ -31,5 +33,4 @@ export class InputTextComponent implements OnInit, OnChanges {
     console.log(this.helpers.dafaultValue);
     this.documentManagerService['searchData'][this.helpers.elementName] = this.helpers.dafaultValue;
   }
-
 }
