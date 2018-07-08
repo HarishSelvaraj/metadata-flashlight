@@ -1,7 +1,3 @@
-<!-- <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px" fxFlexFill style="padding: 20px;">
-  
-    <div fxLayout="column" style="background-color: white; padding: 10px;" fxLayoutAlign="space-between stretch" fxLayoutGap="10px"
-         fxFlexFill>   -->
 <div fxFlexFill *ngIf="tableShow">
   <div [fxFlex]="this.helpers.flex">
     <div class="table-container">
@@ -16,7 +12,7 @@
           <tr *ngFor="let row of tabledata.row let i=index">
             <td *ngFor="let th of tabledata.header">{{row[th.field]}}</td>
             <td>
-              <i  class="material-icons action-icons" (click)="editRecord(row)"> create </i>
+              <i class="material-icons action-icons" (click)="editRecord(row)"> create </i>
             </td>
           </tr>
           <tr *ngIf="tabledata.row?.length==0">
@@ -27,6 +23,7 @@
         </tbody>
       </table>
     </div>
+
   </div>
 </div>
 <!-- </div>
