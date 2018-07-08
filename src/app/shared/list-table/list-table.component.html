@@ -2,28 +2,32 @@
   
     <div fxLayout="column" style="background-color: white; padding: 10px;" fxLayoutAlign="space-between stretch" fxLayoutGap="10px"
          fxFlexFill>   -->
-<div fxFlexFill  *ngIf="tableShow">
-<div [fxFlex]="this.helpers.flex"> 
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th scope="col" *ngFor="let th of tabledata.header">{{th.th}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let row of tabledata.row let i=index">
-          <td *ngFor="let th of tabledata.header">{{row[th.field]}}</td>
-        </tr>
-        <tr *ngIf="tabledata.row?.length==0">
-          <td [colSpan]="tabledata.header.length" style="text-align: center;">
-            No records found
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div fxFlexFill *ngIf="tableShow">
+  <div [fxFlex]="this.helpers.flex">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" *ngFor="let th of tabledata.header">{{th.th}}</th>
+            <th> ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of tabledata.row let i=index">
+            <td *ngFor="let th of tabledata.header">{{row[th.field]}}</td>
+            <td>
+              <i  class="material-icons action-icons" (click)="editRecord(row)"> create </i>
+            </td>
+          </tr>
+          <tr *ngIf="tabledata.row?.length==0">
+            <td [colSpan]="tabledata.header.length" style="text-align: center;">
+              No records found
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  </div>
-  </div>
-  <!-- </div>
+</div>
+<!-- </div>
   </div> -->

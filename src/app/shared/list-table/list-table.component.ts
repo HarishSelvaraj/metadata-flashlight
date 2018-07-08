@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { MatPaginator, MatSort, MatDialogRef } from '@angular/material';
+import { MatPaginator, MatSort, MatDialogRef, MatDialog } from '@angular/material';
 import { CompenentInterface } from '../component.interface';
 import { ExampleDataSource, ExampleDatabase } from './helper.data';
 import { Observable } from 'rxjs/Observable';
@@ -45,7 +45,7 @@ export class ListTableComponent implements OnInit, CompenentInterface {
   @Output() messageEvent = new EventEmitter<string>();
   message = 'ChangeView';
 
-  constructor(private service: GeneralServiceService, private documentManagerService: DocumentManagerService) {
+  constructor(private service: GeneralServiceService, public dialog: MatDialog, private documentManagerService: DocumentManagerService) {
 
   }
   tableShow = false;
@@ -142,5 +142,14 @@ export class ListTableComponent implements OnInit, CompenentInterface {
     this.pageLength = this.helpers.records.rows.length;
   }
   sortData(val) {
+  }
+
+  editRecord(row) {
+    console.log(row);
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '300px',
+      height: '500px',
+      data: row
+    });
   }
 }

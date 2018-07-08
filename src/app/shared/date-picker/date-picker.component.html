@@ -1,5 +1,5 @@
 <mat-form-field>
-  <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <input matInput [matDatepicker]="picker" (change)="setInput($event)" placeholder="{{helpers.placeHolder}}">
+  <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
