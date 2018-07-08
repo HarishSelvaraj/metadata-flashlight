@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator, MatSort, MatDialogRef } from '@angular/material';
 import { CompenentInterface } from '../component.interface';
 import { ExampleDataSource, ExampleDatabase } from './helper.data';
 import { Observable } from 'rxjs/Observable';
@@ -11,6 +11,7 @@ import { GeneralServiceService } from '../../services/general-service.service';
 import { MatTableDataSource } from '@angular/material';
 import { ButtonComponent } from '../button/button.component';
 import { DocumentManagerService } from '../../document-manager/services/document-manager.service';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-list-table',
@@ -54,35 +55,58 @@ export class ListTableComponent implements OnInit, CompenentInterface {
     this.service.langUpdated.subscribe(
       (lang) => {
         let searchInfo = this.documentManagerService.getSearchObject();
-        this.service.getUserData('searchUsesData', searchInfo,'searchList').subscribe
+        this.service.getUserData('searchUsesData', searchInfo, 'searchList').subscribe
           (response => {
-            debugger;
             this.tableShow = true;
-
             this.tabledata.row = response['items'].metaDataResult;
           });
       }
     );
 
+    this.service.add.subscribe(
+      (lang) => {
+        this.service.closeModalAfterAdd();
+        let addUserInfo = this.documentManagerService.getSearchObject();
+        // console.log('in list tbl com ---> after add btn click');
+        // console.log(addUserInfo);
+        this.service.getUserData('addUsesData ', addUserInfo, 'addUserList').subscribe
+          (response => {
+            // console.log('i am from list tbl componenet');
+            // console.log(response);
+            // this.tableShow = true;
+            // this.tabledata.row = response['items'].metaDataResult;
+          });
 
+        console.log('addUserInfo');
+        console.log(addUserInfo);
+        let baseTblName = addUserInfo['baseTable'];
+        console.log(baseTblName);
+        addUserInfo = this.documentManagerService.clearSearchObject();
+
+        this.documentManagerService.searchData['baseTable'] = baseTblName;
+      
+
+        this.service.getUserData('searchUsesData', addUserInfo, 'searchList').subscribe
+          (response => {
+            this.tableShow = true;
+            this.tabledata.row = response['items'].metaDataResult;
+          });
+      }
+    );
+
+    //this.dialogRef.close();
+    
 
     for (let key in this.helpers.details) {
       this.tabledata.header.push({ th: this.helpers.details[key]._fl_elem_label, field: this.helpers.details[key]._fl_elem_name })
     }
-    debugger;
     let reqDataList = {
 
       "dbModel": "sqlModel",
       "database": "mssql",
       "tablename": this.helpers._fl_base_table
     }
-    //this.service.getUserData('listRecords', reqDataList,'initList').subscribe
-    //  (response => {
-    //    this.tabledata.row = response['documents'].metaDataResult;
-    //  });
 
-    // after search
-    console.log('in list tbm compo');
     let reqDataSearch = {
 
       "dbModel": "sqlModel",
@@ -91,15 +115,7 @@ export class ListTableComponent implements OnInit, CompenentInterface {
       "params": {
         "CustID": "1"
       }
-
     }
-    // let searchInfo = this.documentManagerService.getSearchObject();
-    // this.service.getUserData('searchUsesData', searchInfo).subscribe
-    //   (response => {
-    //     this.tabledata.row = response['documents'].metaDataResult;
-    //   });
-    //  }
-
   }
 
   isAllSelected(): boolean {
