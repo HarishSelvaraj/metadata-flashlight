@@ -14,6 +14,7 @@ export class DatePickerComponent implements OnInit {
   ngOnInit() {
     console.log('date picker compoenent');
     console.log(this.helpers);
+    this.documentManagerService['searchData'][this.helpers.elementName] = this.helpers.dafaultValue;
   }
 
   setInput() {

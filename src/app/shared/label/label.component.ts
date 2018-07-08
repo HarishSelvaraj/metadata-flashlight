@@ -10,6 +10,7 @@ export class LabelComponent implements OnInit {
   constructor() { }
   helpers
   ngOnInit() {
+    
   }
 
 }

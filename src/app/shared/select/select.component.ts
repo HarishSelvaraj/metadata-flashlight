@@ -15,6 +15,7 @@ export class SelectComponent implements OnInit {
   constructor(private documentManagerService: DocumentManagerService) { }
   helpers;
   ngOnInit() {
+    this.documentManagerService['searchData'][this.helpers.elementName] = this.helpers.dafaultValue;
     this.helpers;
   }
   setInput() {
