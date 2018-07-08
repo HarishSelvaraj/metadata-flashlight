@@ -36,8 +36,8 @@ export class MasterComponent implements OnInit {
     toggleView() {
 		if (this.media.isActive('gt-md')) {
             this.sideNavMode = 'side';
-            this.sideNavOpened = true;
-            this.matDrawerOpened = false;
+            this.sideNavOpened = false;
+            this.matDrawerOpened = true;
             this.matDrawerShow = true;
         } else if(this.media.isActive('gt-xs')) {
             this.sideNavMode = 'side';

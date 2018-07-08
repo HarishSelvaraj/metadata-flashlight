@@ -4,9 +4,9 @@
   padding: 0 5px;
 }
 
-.table-container {
-  padding: 5px 15px 15px 15px;
-}
+// .table-container {
+//   padding: 5px 15px 15px 15px;
+// }
 
 .table-component-holder {
   border: 1px solid #327ebd;
@@ -34,8 +34,14 @@ table tr {
   padding: .35em;
 }
 
+td.ng-star-inserted {
+  font-family: opensans, sans-serif;
+  font-size: 12px;
+}
+
 table tr:nth-child(odd) td {
   font-family: opensans, sans-serif;
+  font-size: 12px;
 }
 
 table tr:nth-child(even) td {
