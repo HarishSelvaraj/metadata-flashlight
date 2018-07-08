@@ -47,7 +47,7 @@ export class ListTableComponent implements OnInit, CompenentInterface {
   constructor(private service: GeneralServiceService, private documentManagerService: DocumentManagerService) {
 
   }
-
+  tableShow = false;
   ngOnInit() {
     // this.getRows();
 
@@ -57,6 +57,8 @@ export class ListTableComponent implements OnInit, CompenentInterface {
         this.service.getUserData('searchUsesData', searchInfo,'searchList').subscribe
           (response => {
             debugger;
+            this.tableShow = true;
+
             this.tabledata.row = response['items'].metaDataResult;
           });
       }
@@ -74,10 +76,10 @@ export class ListTableComponent implements OnInit, CompenentInterface {
       "database": "mssql",
       "tablename": this.helpers._fl_base_table
     }
-    this.service.getUserData('listRecords', reqDataList,'initList').subscribe
-      (response => {
-        this.tabledata.row = response['documents'].metaDataResult;
-      });
+    //this.service.getUserData('listRecords', reqDataList,'initList').subscribe
+    //  (response => {
+    //    this.tabledata.row = response['documents'].metaDataResult;
+    //  });
 
     // after search
     console.log('in list tbm compo');
