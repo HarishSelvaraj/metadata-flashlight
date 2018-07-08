@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { DocumentManagerService } from '../../document-manager/services/document-manager.service';
 
 @Component({
   selector: 'app-select',
@@ -11,11 +12,16 @@ export class SelectComponent implements OnInit {
   topping = new FormControl();
   toppingLists = [];
 
-  constructor() { }
+  constructor(private documentManagerService: DocumentManagerService) { }
   helpers;
   ngOnInit() {
-    debugger;
+  //  debugger;
     this.helpers;
+  }
+  setInput() {
+    console.log('in i/p componenet');
+    let input = { [this.helpers.elementName]: (<HTMLInputElement>event.target).value }
+    this.documentManagerService['searchData'][this.helpers.elementName] = (<HTMLInputElement>event.target).value;
   }
 
 }

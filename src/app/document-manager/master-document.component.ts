@@ -9,6 +9,8 @@ import { ListTableComponent } from '../shared/list-table/list-table.component';
 import { DocumentManagerComponent } from './document-manager/document-manager.component';
 import { GeneralServiceService } from '../services/general-service.service';
 import { SearchLayoutComponent } from '../shared/search-layout/search-layout.component';
+import { ButtonComponent } from '../shared/button/button.component';
+import { DocumentManagerService } from './services/document-manager.service';
 
 
 @Component({
@@ -37,18 +39,20 @@ export class MasterDocumentComponent implements OnInit {
   message: string;
   @ViewChild(ListTableComponent) child;
 
-  constructor(public generalService: GeneralServiceService, private route: ActivatedRoute) {
+  constructor(public generalService: GeneralServiceService, private route: ActivatedRoute, private documentManagerService: DocumentManagerService) {
     this.route.params.subscribe(params => {
-      debugger;
+    // debugger;
       this.requestDetail.basename = params['baseName'];
     });
   }
 
   ngOnInit() {
+
+   
     
     this.generalService.getSourceDetails('listDocuments', this.requestDetail).subscribe
       (repsonse => {
-        debugger;
+      //  debugger;
         this.documentData = repsonse['documents'];
         for (let key in this.documentData['master']) {
 
@@ -62,21 +66,18 @@ export class MasterDocumentComponent implements OnInit {
           }
           debugger;
           if (this.documentData['master'][key]._fl_doc_type == 'S') {
-            this.componentsData.push({ component: SearchLayoutComponent, data: this.documentData['master'][key]  });
+          this.documentManagerService.searchData['baseTable']=this.documentData['master'][key]._fl_base_table;
+            this.componentsData.push({ component: SearchLayoutComponent, data: this.documentData['master'][key]});
           }
           if (this.documentData['master'][key]._fl_doc_type == 'L') {
             this.componentsData.push({ component: ListTableComponent, data: this.documentData['master'][key] });
           }
+          if (this.documentData['master'][key]._fl_doc_type == 'E') {
+           // this.componentsData.push({ component: ButtonComponent, data: this.documentData['master'][key] });
+           this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: '', placeHolder: 'Edit', editDetailsInd: true ,editDetails: this.documentData['master'][key]} });
+          }
         }
-
-        //this.componentsData.push({ component: ListTableComponent });
       });
-    //this.componentsData.push({ component: SearchLayoutComponent, data: this.sample_data });
-    //this.componentsData.push({ component: ListTableComponent });
-
-    this.generalService.currentMessage.subscribe(message => this.message = message)
-    console.log('in parent componenet');
-    console.log(this.message);
 
     // this.componentsData.push({ component: ListTableComponent});
     // this.generalService.getSourceData(this.apiref).subscribe
@@ -101,6 +102,5 @@ export class MasterDocumentComponent implements OnInit {
   }
 
   viewList() {
-    alert('test');
   }
 }

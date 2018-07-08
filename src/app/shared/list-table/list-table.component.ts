@@ -9,6 +9,8 @@ import { SearchLayoutComponent } from '../search-layout/search-layout.component'
 import { SearchComponent } from '../../document-manager/document-details/search/search.component';
 import { GeneralServiceService } from '../../services/general-service.service';
 import { MatTableDataSource } from '@angular/material';
+import { ButtonComponent } from '../button/button.component';
+import { DocumentManagerService } from '../../document-manager/services/document-manager.service';
 
 @Component({
   selector: 'app-list-table',
@@ -41,38 +43,62 @@ export class ListTableComponent implements OnInit, CompenentInterface {
   @ViewChild('filter') filter: ElementRef;
   @Output() messageEvent = new EventEmitter<string>();
   message = 'ChangeView';
-  constructor(private service : GeneralServiceService) {
+
+  constructor(private service: GeneralServiceService, private documentManagerService: DocumentManagerService) {
 
   }
-
+  tableShow = false;
   ngOnInit() {
     // this.getRows();
-    //  console.log('i am in list table component.');
-    //  console.log(this.helpers);
-    this.service.currentMessage.subscribe(message => this.message = message);
-    debugger;
-    this.helpers;
-    for (let key in this.helpers.details) {
-      this.tabledata.header.push({ th: this.helpers.details[key]._fl_elem_label, field: this.helpers.details[key]._fl_elem_name})
-    }
-    this.reqData.tablename = this.helpers._fl_base_table;
-    this.service.getUserData('listItems', this.reqData).subscribe
-      (repsonse => {
-        this.helpers;
-          this.tabledata.row = repsonse['items'].metaDataResult;
-          
-          //this.dataSource = new MatTableDataSource(this.tabledata);
-     
-      });
 
-    //this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-    //Observable.fromEvent(this.filter.nativeElement, 'keyup')
-    //  .debounceTime(150)
-    //  .distinctUntilChanged()
-    //  .subscribe(() => {
-    //    if (!this.dataSource) { return; }
-    //    this.dataSource.filter = this.filter.nativeElement.value;
+    this.service.langUpdated.subscribe(
+      (lang) => {
+        let searchInfo = this.documentManagerService.getSearchObject();
+        this.service.getUserData('searchUsesData', searchInfo,'searchList').subscribe
+          (response => {
+            debugger;
+            this.tableShow = true;
+
+            this.tabledata.row = response['items'].metaDataResult;
+          });
+      }
+    );
+
+
+
+    for (let key in this.helpers.details) {
+      this.tabledata.header.push({ th: this.helpers.details[key]._fl_elem_label, field: this.helpers.details[key]._fl_elem_name })
+    }
+    debugger;
+    let reqDataList = {
+
+      "dbModel": "sqlModel",
+      "database": "mssql",
+      "tablename": this.helpers._fl_base_table
+    }
+    //this.service.getUserData('listRecords', reqDataList,'initList').subscribe
+    //  (response => {
+    //    this.tabledata.row = response['documents'].metaDataResult;
     //  });
+
+    // after search
+    console.log('in list tbm compo');
+    let reqDataSearch = {
+
+      "dbModel": "sqlModel",
+      "database": "mssql",
+      "tablename": "CustomerMaster",
+      "params": {
+        "CustID": "1"
+      }
+
+    }
+    // let searchInfo = this.documentManagerService.getSearchObject();
+    // this.service.getUserData('searchUsesData', searchInfo).subscribe
+    //   (response => {
+    //     this.tabledata.row = response['documents'].metaDataResult;
+    //   });
+    //  }
 
   }
 
@@ -100,10 +126,5 @@ export class ListTableComponent implements OnInit, CompenentInterface {
     this.pageLength = this.helpers.records.rows.length;
   }
   sortData(val) {
-  }
-
-  viewList() {
-   // this.service.changeView();
-   this.service.changeMessage("changeView");
   }
 }

@@ -1,5 +1,5 @@
 <mat-form-field>
-  <mat-select placeholder="{{helpers.placeHolder}}"  [(ngModel)]="helpers.dafaultValue" [ngModelOptions]="{standalone: true}">
+  <mat-select placeholder="{{helpers.placeHolder}}"  (change)="setInput($event)"   [(ngModel)]="helpers.dafaultValue" [ngModelOptions]="{standalone: true}">
     <mat-option *ngFor="let topping of toppingLists">{{helpers.dafaultValue}}</mat-option>
   </mat-select>
 </mat-form-field>

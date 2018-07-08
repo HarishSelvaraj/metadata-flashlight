@@ -13,6 +13,5 @@ export class TestComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    alert("in");
   }
 }

@@ -54,10 +54,10 @@ export class DocListComponent implements OnInit {
     for (var i = 0; i < this.pageSize; i++) {
       // this.rows = [...this.rows, this.metaDoclist[i]];
       this.dataSource = new MatTableDataSource(this.metaDoclist);
-      debugger;
+     // debugger;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sorts;
-      debugger;
+    // debugger;
 
     }
   }
@@ -68,7 +68,7 @@ export class DocListComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   detailsData(row) {
-    debugger;
+   // debugger;
     this.router.navigate(['/document-manager', row._fl_base_name]);
 
   }

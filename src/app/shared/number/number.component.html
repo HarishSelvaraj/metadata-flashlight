@@ -1,0 +1,5 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput type="number" (change)="setInput($event)" [(ngModel)]="helpers.dafaultValue" [ngModelOptions]="{standalone: true}" placeholder="{{helpers.placeHolder}}">
+  </mat-form-field>
+</form>
