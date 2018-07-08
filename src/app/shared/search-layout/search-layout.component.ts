@@ -31,6 +31,8 @@ export class SearchLayoutComponent implements OnInit {
 
   ngOnInit() {
     debugger;
+    // console.log("this.helpers.details", this.helpers);
+    console.log("this.helpers.details", this.helpers.flex);
     for (let key in this.helpers.details) {
 
       if (this.helpers.details[key]._fl_elem_type == "SELECT") {

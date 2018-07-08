@@ -28,6 +28,7 @@ table tr {
     background: #f8f8f8;
     border: 1px solid #ddd;
     padding: .35em;
+    word-wrap: normal;
 }
 table tr:nth-child(odd) td{
     font-family:Roboto,"Helvetica Neue",sans-serif;
@@ -45,6 +46,7 @@ table td {
     padding: .625em;
     text-align: center;
     font-family:Roboto,"Helvetica Neue",sans-serif;
+    word-wrap: normal;
 }
 table th {
     background:#cfcfcf;
@@ -68,6 +70,7 @@ table th {
         padding: 0;
         position: absolute;
         width: 1px;
+        word-wrap: normal;
     }
     table tr {
         border-bottom: 3px solid #ddd;
@@ -79,6 +82,7 @@ table th {
         display: block;
         font-size: .8em;
         text-align: right;
+        word-wrap: normal;
     }
     table td:before {
         /*

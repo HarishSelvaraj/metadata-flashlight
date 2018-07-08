@@ -62,7 +62,7 @@ export class MasterDocumentComponent implements OnInit {
           }
           debugger;
           if (this.documentData['master'][key]._fl_doc_type == 'S') {
-            this.componentsData.push({ component: SearchLayoutComponent, data: this.documentData['master'][key] });
+            this.componentsData.push({ component: SearchLayoutComponent, data: this.documentData['master'][key]  });
           }
           if (this.documentData['master'][key]._fl_doc_type == 'L') {
             this.componentsData.push({ component: ListTableComponent, data: this.documentData['master'][key] });
