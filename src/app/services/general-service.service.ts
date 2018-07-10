@@ -11,6 +11,7 @@ export class GeneralServiceService {
 
   langUpdated = new EventEmitter();
   add = new EventEmitter();
+  edit = new EventEmitter();
   closeModal = new EventEmitter();
 
 
@@ -42,7 +43,8 @@ export class GeneralServiceService {
         "dbModel": "sqlModel",
         "database": "mssql",
         "tablename": requestData.baseTable,
-        "params": {}
+        "params": {},
+        "condition": {}
       }
 
       for (let key in requestData) {
@@ -68,8 +70,49 @@ export class GeneralServiceService {
     this.add.emit('add');
   }
 
+  editUser() {
+    this.edit.emit('edit');
+  }
+
   closeModalAfterAdd() {
-    console.log('in closeModalAfterAdd inside service');
     this.closeModal.emit('close');
+  }
+
+  editUserData(api, requestData, conditionData, searchtype) {
+    let reqData;
+    if (searchtype == 'editList') {
+      reqData = {
+        "dbModel": "sqlModel",
+        "database": "mssql",
+        "tablename": requestData.baseTable,
+        "params": {},
+        "condition": {}
+      }
+
+      for (let key in requestData) {
+        if (key != "baseTable") {
+          if (requestData[key] != "") {
+            reqData['params'][key] = requestData[key];
+          }
+        }
+      }
+
+      for (let key in conditionData) {
+        console.log('i am in condition data inside service');
+        console.log(requestData[key]);
+        if (key != "baseTable") {
+          if (requestData[key] != "") {
+            reqData['condition'][key] = conditionData[key];
+          }
+        }
+      }
+
+    } else {
+      reqData = requestData;
+    }
+    console.log('end of service');
+    console.log(reqData);
+    // return reqData;
+    return this.http.post(environment.apiUrl + api, reqData);
   }
 }

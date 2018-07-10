@@ -38,13 +38,10 @@ export class CreateDocumentComponent implements OnInit {
   }
 
   selectFormType() {
-    //console.log(this.formType);
     this.documentManagerService.setDocumentFormTypes(this.formType);
   }
 
   documentDetails() {
-    //console.log('i am in create document componenet..');
-   // console.log(this.documentManagerService.getDocumentFormTypes());
     this.router.navigate(['/document-manager/details']);
   }
 

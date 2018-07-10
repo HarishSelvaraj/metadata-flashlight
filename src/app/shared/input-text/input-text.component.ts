@@ -16,21 +16,18 @@ export class InputTextComponent implements OnInit, OnChanges {
   }
   ngOnInit() {
     //this.documentManagerService.setSearchObject(input);
-   // console.log(this.helpers.masterData);
     // setInterval(() => {
     //   this.setInput();
     // }, 500);
     this.documentManagerService['searchData'][this.helpers.elementName] = this.helpers.dafaultValue;
-    console.log(this.documentManagerService.searchData);
+ 
   }
   ngOnChanges(changes: SimpleChanges) {
-    console.log('in i/p componenet');
-    console.log(changes);
+   
   }
 
   setInput() {
-    console.log('set input ()');
-    console.log(this.helpers.dafaultValue);
+   
     this.documentManagerService['searchData'][this.helpers.elementName] = this.helpers.dafaultValue;
   }
 }

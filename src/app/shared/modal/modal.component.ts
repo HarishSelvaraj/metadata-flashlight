@@ -25,6 +25,9 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log('im in modal compoenet');
+    //console.log(this.helpers);
+
     for (let key in this.data.details) {
       // if (this.data.details[key]._fl_elem_type == "TEXT") {
       //   this.componentsData.push({ component: InputTextComponent, data: { dafaultValue: this.data.details[key]._fl_default_value, placeHolder: this.data.details[key]._fl_elem_label, elementName: this.data.details[key]._fl_elem_name } });
@@ -51,22 +54,30 @@ export class ModalComponent implements OnInit {
       if (this.data.details[key]._fl_elem_type == "BUTTON") {
         this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: this.data.details[key]._fl_default_value, placeHolder: this.data.details[key]._fl_elem_label, elementName: this.data.details[key]._fl_elem_name } });
       } else {
-        this.btn = true;
+        if (this.data.isEdit) {
+          this.btn = false;
+        } else {
+          this.btn = true;
+        }
       }
     }
     if (this.btn) {
-      this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: '', placeHolder: 'Add User', addUserInd: true } });
+      this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: '', placeHolder: 'Add', addUserInd: true } });
+    } else {
+      this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: '', placeHolder: 'Edit', editUserInd: true } });
     }
 
     this.service.closeModal.subscribe(
       (lang) => {
-        console.log('this.service.closeModal called');
         this.dialogRef.close();
       });
   }
 
   close() {
+    for (let key in this.data.details) {
+      this.data.details[key]._fl_default_value = '';
+    }
     this.dialogRef.close();
-  }  
+  }
 
 }
