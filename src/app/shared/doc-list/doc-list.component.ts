@@ -34,7 +34,6 @@ export class DocListComponent implements OnInit {
     this.generalService.getDocList('listBaseName', this.requestDocList).subscribe
       (response => {
         this.metaDoclist = response['baseName'].metaDataResult;
-        console.log(this.metaDoclist);
         for (var i = 0; i < this.metaDoclist.length; i++) {
           this.metaDoclist[i].sno = i + 1;
         }

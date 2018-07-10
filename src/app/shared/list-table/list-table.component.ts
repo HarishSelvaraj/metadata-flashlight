@@ -67,24 +67,19 @@ export class ListTableComponent implements OnInit, CompenentInterface {
       (lang) => {
         this.service.closeModalAfterAdd();
         let addUserInfo = this.documentManagerService.getSearchObject();
-        // console.log('in list tbl com ---> after add btn click');
-        // console.log(addUserInfo);
+
         this.service.getUserData('addUsesData ', addUserInfo, 'addUserList').subscribe
           (response => {
-            // console.log('i am from list tbl componenet');
-            // console.log(response);
-            // this.tableShow = true;
-            // this.tabledata.row = response['items'].metaDataResult;
+
           });
 
-        console.log('addUserInfo');
-        console.log(addUserInfo);
+
         let baseTblName = addUserInfo['baseTable'];
-        console.log(baseTblName);
+
         addUserInfo = this.documentManagerService.clearSearchObject();
 
         this.documentManagerService.searchData['baseTable'] = baseTblName;
-      
+
 
         this.service.getUserData('searchUsesData', addUserInfo, 'searchList').subscribe
           (response => {
@@ -94,8 +89,29 @@ export class ListTableComponent implements OnInit, CompenentInterface {
       }
     );
 
-    //this.dialogRef.close();
-    
+    this.service.edit.subscribe(
+      (lang) => {
+        this.service.closeModalAfterAdd();
+        let editUserInfo = this.documentManagerService.getSearchObject();
+        let condition = {
+          "CustID": editUserInfo["CustID"]
+        };
+        this.service.editUserData('editUsesData', editUserInfo, condition, 'editList').subscribe
+          (response => {
+
+          });
+        let baseTblName = editUserInfo['baseTable'];
+        editUserInfo = this.documentManagerService.clearSearchObject();
+        this.documentManagerService.searchData['baseTable'] = baseTblName;
+
+        this.service.getUserData('searchUsesData', editUserInfo, 'searchList').subscribe
+          (response => {
+            this.tableShow = true;
+            this.tabledata.row = response['items'].metaDataResult;
+          });
+      }
+    );
+
 
     for (let key in this.helpers.details) {
       this.tabledata.header.push({ th: this.helpers.details[key]._fl_elem_label, field: this.helpers.details[key]._fl_elem_name })
@@ -144,12 +160,19 @@ export class ListTableComponent implements OnInit, CompenentInterface {
   sortData(val) {
   }
 
-  editRecord(row) {
-    console.log(row);
+  editRecord(row, index) {
+    this.helpers.isEdit = true;
+    // bind
+    for (let key in this.helpers.details) {
+      if (row[this.helpers.details[key]._fl_elem_name]) {
+        this.helpers.details[key]._fl_default_value = row[this.helpers.details[key]._fl_elem_name];
+      }
+    }
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '300px',
       height: '500px',
-      data: row
+      data: this.helpers,
+      disableClose: true
     });
   }
 }

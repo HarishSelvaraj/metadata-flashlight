@@ -18,27 +18,24 @@ export class ButtonComponent implements OnInit {
   searchData: any;
 
   ngOnInit() {
-    //  console.log('i am in btn component');
-    // console.log(this.helpers);
 
-    // this.documentManagerService.getSearchObject().subscribe(
-    //   (data) => {
-    //     this.searchData = data;
-    //   });
   }
 
   buttonAction() {
-    console.log(this.helpers);
+
     if (this.helpers.editDetailsInd == true) {
       const dialogRef = this.dialog.open(ModalComponent, {
         width: '300px',
         height: '500px',
-        data: this.helpers.editDetails
+        data: this.helpers.editDetails,
+        disableClose: true
       });
     } else if (this.helpers.searchDetailsInd == true) {
       this.service.searchTable();
-    } else if(this.helpers.addUserInd == true) {
+    } else if (this.helpers.addUserInd == true) {
       this.service.addUser();
+    } else if(this.helpers.editUserInd == true) {
+      this.service.editUser();
     }
   }
 }
