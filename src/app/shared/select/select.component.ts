@@ -15,12 +15,15 @@ export class SelectComponent implements OnInit {
   constructor(private documentManagerService: DocumentManagerService) { }
   helpers;
   ngOnInit() {
+    this.documentManagerService['searchData'][this.helpers.elementName] = this.helpers.dafaultValue;
+    debugger;
     this.helpers;
   }
   setInput() {
+    debugger;
     console.log('in i/p componenet');
     let input = { [this.helpers.elementName]: (<HTMLInputElement>event.target).value }
-    this.documentManagerService['searchData'][this.helpers.elementName] = (<HTMLInputElement>event.target).value;
+    this.documentManagerService['searchData'][this.helpers.elementName] = this.helpers.dafaultValue;
   }
 
 }

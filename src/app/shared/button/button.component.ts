@@ -37,6 +37,7 @@ export class ButtonComponent implements OnInit {
       });
     } else if (this.helpers.searchDetailsInd == true) {
       this.service.searchTable();
+      window.scroll(0, 0);
     } else if(this.helpers.addUserInd == true) {
       this.service.addUser();
     }
