@@ -28,7 +28,9 @@ import { SearchLayoutComponent } from '../shared/search-layout/search-layout.com
 import { SearchComponent } from './document-details/search/search.component';
 import { InputTextComponent } from '../shared/input-text/input-text.component';
 import { SelectComponent } from '../shared/select/select.component';
-import { SearchDocumentComponent } from '../shared/search-document/search-document.component';
+//import { SearchDocumentComponent } from '../shared/search-document/search-document.component';
+//import { DriverComponent } from '../shared/driver/driver.component';
+import { DriveLoaderComponent } from './drive-loader/drive-loader.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -55,7 +57,9 @@ export const appRoutes: Routes = [
     children: [
       { path: '', component: DocumentManagerComponent },
       { path: 'addnew', component: CreateDocumentComponent },
-      { path: 'details', component: DocumentDetailsComponent }
+      { path: 'details', component: DocumentDetailsComponent },
+      //{path: 'driver/:basename', component: DriverComponent},
+      //{path: 'driver/:basename', component:DriveLoaderComponent}
     ]
   },
 ];
@@ -92,8 +96,9 @@ export const appRoutes: Routes = [
     ListComponent,
     EditComponent,
     PortfolioComponent,
+    DriveLoaderComponent,
     ],
-  entryComponents: [PageHeaderComponent,ListTableComponent, SearchDocumentComponent],
+  entryComponents: [PageHeaderComponent,ListTableComponent],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

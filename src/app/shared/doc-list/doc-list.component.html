@@ -13,7 +13,7 @@
       <mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="sno">
           <mat-header-cell *matHeaderCellDef mat-sort-header  class="centers" scope="col">SERIAL NO </mat-header-cell>
-          <mat-cell *matCellDef="let row" class="centers"> {{row.sno}} </mat-cell>
+          <mat-cell *matCellDef="let row" class="centers"> {{row.num}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="basename">
           <mat-header-cell *matHeaderCellDef mat-sort-header  class="centers" scope="col"> BASE NAME </mat-header-cell>

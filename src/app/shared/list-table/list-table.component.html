@@ -1,22 +1,22 @@
-<div fxFlexFill *ngIf="tableShow">
+<div fxFlexFill *ngIf="true">
   <div [fxFlex]="this.helpers.flex">
     <div class="table-container" style="overflow-x:scroll">
       <table>
         <thead>
           <tr>
-            <th scope="col" *ngFor="let th of tabledata.header">{{th.th}}</th>
-            <th> ACTION</th>
+            <th scope="col" *ngFor="let th of helpers.cols">{{th}}</th>
+            
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let row of tabledata.row let i=index">
-            <td *ngFor="let th of tabledata.header">{{row[th.field]}}</td>
-            <td>
+          <tr *ngFor="let row of helpers.rows let i=index">
+            <td *ngFor="let th of helpers.cols">{{row[th]}}</td>
+            <!-- <td>
               <i class="material-icons action-icons" (click)="editRecord(row, i)"> create </i>
-            </td>
+            </td> -->
           </tr>
-          <tr *ngIf="tabledata.row?.length==0">
-            <td [colSpan]="tabledata.header.length" style="text-align: center;">
+          <tr *ngIf="helpers.rows?.length==0">
+            <td [colSpan]="helpers.cols.length" style="text-align: center;">
               No records found
             </td>
           </tr>

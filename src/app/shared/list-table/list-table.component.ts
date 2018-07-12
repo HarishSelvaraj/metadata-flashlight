@@ -50,19 +50,21 @@ export class ListTableComponent implements OnInit, CompenentInterface {
   }
   tableShow = false;
   ngOnInit() {
+    debugger;
+    this.helpers;
     // this.getRows();
 
-    this.service.langUpdated.subscribe(
-      (lang) => {
-        let searchInfo = this.documentManagerService.getSearchObject();
-        this.service.getUserData('searchUsesData', searchInfo, 'searchList').subscribe
-          (response => {
-            this.tableShow = true;
-            this.tabledata.row = response['items'].metaDataResult;
-            window.scroll(0, 0);
-          });
-      }
-    );
+    // this.service.langUpdated.subscribe(
+    //   (lang) => {
+    //     let searchInfo = this.documentManagerService.getSearchObject();
+    //     this.service.getUserData('searchUsesData', searchInfo, 'searchList').subscribe
+    //       (response => {
+    //         this.tableShow = true;
+    //         this.tabledata.row = response['items'].metaDataResult;
+    //         window.scroll(0, 0);
+    //       });
+    //   }
+    // );
 
     this.service.add.subscribe(
       (lang) => {
@@ -114,9 +116,9 @@ export class ListTableComponent implements OnInit, CompenentInterface {
     );
 
 
-    for (let key in this.helpers.details) {
-      this.tabledata.header.push({ th: this.helpers.details[key]._fl_elem_label, field: this.helpers.details[key]._fl_elem_name })
-    }
+    // for (let key in this.helpers.details) {
+    //   this.tabledata.header.push({ th: this.helpers.details[key]._fl_elem_label, field: this.helpers.details[key]._fl_elem_name })
+    // }
     let reqDataList = {
 
       "dbModel": "sqlModel",
