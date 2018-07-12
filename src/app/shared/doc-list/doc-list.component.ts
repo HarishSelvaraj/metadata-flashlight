@@ -45,11 +45,12 @@ export class DocListComponent implements OnInit {
     this.generalService.getData('search').subscribe
       (response => {
         let res = this.generalService.getResult(response);
-       // res.re
-       console.log(this.generalService.getResult(response));
-        this.metaDoclist = this.generalService.getResult(response).rows;
+        this.metaDoclist = res.results.rows;
+        this.getRows();
       });
   }
+
+
   next(event) {
     this.rows = [];
     for (var i = 1 * event.pageIndex * event.pageSize; i < event.pageSize + event.pageIndex * event.pageSize; i++) {
