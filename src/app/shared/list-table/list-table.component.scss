@@ -12,7 +12,9 @@
   border: 1px solid #327ebd;
   background-color: white;
 }
-
+.table-container{
+  overflow-x:auto;
+}
 table {
   border: 1px solid #ccc;
   border-collapse: collapse;
@@ -57,17 +59,21 @@ table th,
 table td {
   padding: .625em;
   text-align: center;
-  font-family: opensans, sans-serif;
+  font-family: "opensans", sans-serif;
+  word-wrap:break-word;
+  word-break:break-word;
 }
 
 table th {
   background: #cfcfcf;
   font-size: 14px;
   // letter-spacing: .1em;
-  white-space: nowrap;
+ white-space:inherit;
   text-transform: uppercase;
 }
-
+.tdWrap{
+   word-break:break-word !important;
+}
 @media screen and (max-width: 600px) {
   table {
     border: 0;
