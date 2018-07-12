@@ -30,14 +30,24 @@ export class DocListComponent implements OnInit {
 
   }
   ngOnInit() {
-    
-    this.generalService.getDocList('listBaseName', this.requestDocList).subscribe
+
+    // this.generalService.getDocList('listBaseName', this.requestDocList).subscribe
+    //   (response => {
+    //     this.metaDoclist = response['baseName'].metaDataResult;
+    //     for (var i = 0; i < this.metaDoclist.length; i++) {
+    //       this.metaDoclist[i].sno = i + 1;
+    //     }
+    //     this.getRows();
+    //   });
+
+    this.generalService.request.reqbody.lookup = "META_MASTER";
+    this.generalService.request.reqbody.oper = "LIST";
+    this.generalService.getData('search').subscribe
       (response => {
-        this.metaDoclist = response['baseName'].metaDataResult;
-        for (var i = 0; i < this.metaDoclist.length; i++) {
-          this.metaDoclist[i].sno = i + 1;
-        }
-        this.getRows();
+        let res = this.generalService.getResult(response);
+       // res.re
+       console.log(this.generalService.getResult(response));
+        this.metaDoclist = this.generalService.getResult(response).rows;
       });
   }
   next(event) {

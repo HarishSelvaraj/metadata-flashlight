@@ -47,8 +47,6 @@ export class MasterDocumentComponent implements OnInit {
 
   ngOnInit() {
 
-
-
     this.generalService.getSourceDetails('listDocuments', this.requestDetail).subscribe
       (repsonse => {
         this.documentData = repsonse['documents'];

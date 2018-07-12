@@ -25,8 +25,8 @@ export class ButtonComponent implements OnInit {
 
     if (this.helpers.editDetailsInd == true) {
       const dialogRef = this.dialog.open(ModalComponent, {
-        width: '300px',
-        height: '500px',
+        width: '800px',
+        height: '400px',
         data: this.helpers.editDetails,
         disableClose: true
       });

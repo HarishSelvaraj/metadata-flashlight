@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { _ } from 'underscore';
 
 @Injectable()
 export class GeneralServiceService {
@@ -13,6 +14,19 @@ export class GeneralServiceService {
   add = new EventEmitter();
   edit = new EventEmitter();
   closeModal = new EventEmitter();
+
+   // raji added
+   request = {
+    "reqbody": {
+      "db": { "model": "sqlModel", "type": "mssql" },
+      "oper": "list",
+      "lookup": "META_TABLES",
+      "type": "JSLIM",
+      "filter": [],
+      "startrow": 1,
+      "maxrows": 100
+    }
+  }
 
 
   constructor(public http: HttpClient) { }
@@ -114,5 +128,37 @@ export class GeneralServiceService {
     console.log(reqData);
     // return reqData;
     return this.http.post(environment.apiUrl + api, reqData);
+  }
+
+  getData(api) {
+    return this.http.post(environment.apiUrl + api, this.request);
+  }
+
+  getResult(res) {
+
+    let isSlim = false;
+    if (res.api.type === "JSLIM")
+      isSlim = true;
+
+    if (isSlim) {
+      res.results.rowOrig = [];
+      _.extend(res.results.rowOrig, res.results.rows);
+    }
+
+    let rRow = [];
+
+    for (let r = 0; r < res.results.rows.length; r++) {
+      let tRow = {};
+      let cRow = res.results.rows[r];
+      for (let c = 0; c < res.results.cols.length; c++) {
+        let cName = res.results.cols[c];
+        let cPos = res.results.cpos[c];
+        tRow[cName] = cRow[cPos];
+      }
+      rRow.push(tRow);
+    }
+
+    res.results.rows = rRow;
+    return res;
   }
 }
