@@ -65,7 +65,7 @@ export class MasterDocumentComponent implements OnInit {
           if (this.documentData['master'][key]._fl_doc_type == 'E') {
             this.documentManagerService.searchData['baseTable'] = this.documentData['master'][key]._fl_base_table;
             // this.componentsData.push({ component: ButtonComponent, data: this.documentData['master'][key] });
-            this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: '', placeHolder: 'Edit', editDetailsInd: true, editDetails: this.documentData['master'][key] } });
+            this.componentsData.push({ component: ButtonComponent, data: { dafaultValue: '', placeHolder: 'Add User', editDetailsInd: true, editDetails: this.documentData['master'][key] } });
           }
           if (this.documentData['master'][key]._fl_doc_type == 'S') {
             this.documentManagerService.searchData['baseTable'] = this.documentData['master'][key]._fl_base_table;

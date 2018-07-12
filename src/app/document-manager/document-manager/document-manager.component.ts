@@ -31,9 +31,6 @@ export class DocumentManagerComponent implements OnInit {
   @Output() sort = new EventEmitter();
   @Output() dup = new EventEmitter();
   constructor(private router: Router, private route: ActivatedRoute, private componentFactoryResolver: ComponentFactoryResolver) {
-    //this.route.params.subscribe(params => {
-    //  console.log(params); 
-    //});
   }
 
 
