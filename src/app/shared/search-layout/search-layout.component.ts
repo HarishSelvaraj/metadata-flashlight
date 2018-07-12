@@ -34,7 +34,11 @@ export class SearchLayoutComponent implements OnInit {
 
     for (let key in this.helpers.details) {
       if (this.helpers.details[key]._fl_elem_type == "SELECT") {
-        this.componentsData.push({ component: SelectComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label, elementName: this.helpers.details[key]._fl_elem_name,baseTable:this.helpers['_fl_base_table'] } });
+        var code;
+        if (this.helpers.details[key].code) {
+          code = this.helpers.details[key].code;
+        }
+        this.componentsData.push({ component: SelectComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label, elementName: this.helpers.details[key]._fl_elem_name, baseTable: this.helpers['_fl_base_table'], options: code } });
       }
       if (this.helpers.details[key]._fl_elem_type == "TEXT") {
         this.componentsData.push({ component: InputTextComponent, data: { dafaultValue: this.helpers.details[key]._fl_default_value, placeHolder: this.helpers.details[key]._fl_elem_label, elementName: this.helpers.details[key]._fl_elem_name,baseTable:this.helpers['_fl_base_table'] } });

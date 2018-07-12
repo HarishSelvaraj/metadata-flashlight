@@ -59,6 +59,7 @@ export class ListTableComponent implements OnInit, CompenentInterface {
           (response => {
             this.tableShow = true;
             this.tabledata.row = response['items'].metaDataResult;
+            window.scroll(0, 0);
           });
       }
     );
