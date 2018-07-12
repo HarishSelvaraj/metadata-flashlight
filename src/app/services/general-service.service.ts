@@ -27,12 +27,37 @@ export class GeneralServiceService {
       "maxrows": 100
     }
   }
-
+def_opts={
+  "reqbody":{
+  "db": {"model": "sqlModel", "type": "mssql"},
+  "oper": "",
+  "lookup": "",
+  "type": "JSLIM",
+  "filter":[],
+  "startrow":1,
+  "maxrows":100  
+}
+}
 
   constructor(public http: HttpClient) { }
   params = {
     "dbModel": "sqlModel",
     "database": "mssql"
+  }
+
+  getMetaSearch(searchData,_apiOptions){
+    this.def_opts;
+    console.log(searchData);
+    console.log(this.def_opts);
+    debugger;
+    //let search_Options=_.extend(this.def_opts,searchData);
+    let search_Options = this.def_opts;
+    search_Options.reqbody.oper = searchData.reqbody.oper;
+    search_Options.reqbody.lookup = searchData.reqbody.lookup;
+    search_Options.reqbody.filter = searchData.reqbody.filter;
+    
+    console.log(search_Options);
+    return this.http.post(environment.apiUrl + _apiOptions, search_Options);
   }
   GetMenuList(): Observable<any> {
     return this.http.post(environment.apiUrl + 'getMetaTableInfo', this.params);
@@ -52,25 +77,31 @@ export class GeneralServiceService {
   }
   getUserData(api, requestData, searchtype) {
     let reqData;
-    if (searchtype == 'searchList' || searchtype == 'addUserList') {
-      reqData = {
-        "dbModel": "sqlModel",
-        "database": "mssql",
-        "tablename": requestData.baseTable,
-        "params": {},
-        "condition": {}
-      }
+    debugger;
+    // if (searchtype == 'searchList' || searchtype == 'addUserList') {
+    //   reqData = {
+    //     "dbModel": "sqlModel",
+    //     "database": "mssql",
+    //     "tablename": requestData.baseTable,
+    //     "params": {},
+    //     "condition": {}
+    //   }
 
-      for (let key in requestData) {
-        if (key != "baseTable") {
-          if (requestData[key] != "") {
-            reqData['params'][key] = requestData[key];
-          }
-        }
-      }
-    } else {
-      reqData = requestData;
-    }
+    //   for (let key in requestData) {
+    //     if (key != "baseTable") {
+    //       if (requestData[key] != "") {
+    //         reqData['params'][key] = requestData[key];
+    //       }
+    //     }
+    //   }
+    // } else {
+    //   reqData = requestData;
+    // }
+    let search_Options=this.def_opts;
+    search_Options.reqbody.oper = requestData.reqbody.oper;
+    search_Options.reqbody.lookup = requestData.reqbody.lookup;
+    search_Options.reqbody.filter = requestData.reqbody.filter;
+    debugger;
     return this.http.post(environment.apiUrl + api, reqData);
   }
   searchUsesData(api, requestData) {

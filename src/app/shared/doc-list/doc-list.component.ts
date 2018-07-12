@@ -46,6 +46,7 @@ export class DocListComponent implements OnInit {
       (response => {
         let res = this.generalService.getResult(response);
         this.metaDoclist = res.results.rows;
+        console.log(response);
         this.getRows();
       });
   }

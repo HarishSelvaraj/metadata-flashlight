@@ -23,6 +23,8 @@ import { DocListComponent } from '../shared/doc-list/doc-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import { DriverComponent } from '../shared/driver/driver.component';
+import { SharedModule } from '../shared/shared.module';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -40,6 +42,7 @@ export const appRoutes: Routes = [{
     { path: 'document-list', component: DocListComponent },
     //{ path: 'document-manager/:apiLink', loadChildren: '../document-manager/master-document.module#MasterDocumentModule' },
     { path: 'document-manager/:baseName', loadChildren: '../document-manager/master-document.module#MasterDocumentModule' },
+    { path: 'driver/:baseName', component: DriverComponent },
   ]
 }
 ]
@@ -72,7 +75,8 @@ export const appRoutes: Routes = [{
     MatTabsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatInputModule,MatSortModule
+    MatInputModule,MatSortModule,SharedModule
+
   ],
   exports: [RouterModule],
   providers: [

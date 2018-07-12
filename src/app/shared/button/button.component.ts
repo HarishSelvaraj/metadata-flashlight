@@ -31,6 +31,7 @@ export class ButtonComponent implements OnInit {
         disableClose: true
       });
     } else if (this.helpers.searchDetailsInd == true) {
+      debugger;
       this.service.searchTable();
     } else if (this.helpers.addUserInd == true) {
       this.service.addUser();
