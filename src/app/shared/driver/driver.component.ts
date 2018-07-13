@@ -22,7 +22,9 @@ export class DriverComponent implements OnInit {
   metaData;
   _opts;
   listdata;
+  inputData:any=[];
   @Input() componentsData: Array<any> = [];
+  // @Input() inputData: Array<any> = [];
   constructor(private router: Router, private route: ActivatedRoute, private generalService: GeneralServiceService, private documentManagerService: DocumentManagerService) {
     this.route.params.subscribe(params => {
       this.baseName = params.baseName;
@@ -46,6 +48,9 @@ export class DriverComponent implements OnInit {
     this.metaData = {};
     let _lrenderSearch = (err, tObj) => {
       // whatever
+
+      console.log('tObj');
+      console.log(tObj);
       let searchObj = tObj.metaData.detail.results.rows;
       this.searchData = searchObj;
       for (let key in searchObj) {
@@ -160,10 +165,13 @@ export class DriverComponent implements OnInit {
             console.log(searchInfo[this.searchData[key]._fl_elem_name]);
             //  "t": "@eq", "k": "_fl_doc_name", "v": [this.baseName + "_SEARCH"] 
             //this.helpers.details[key]._fl_default_value = row[this.helpers.details[key]._fl_elem_name];
+            let _val = [];
+            _val.push(searchInfo[this.searchData[key]._fl_elem_name]);
+      
             this._opts.reqbody.filter.push({
               "t": "@eq",
               "k": this.searchData[key]._fl_elem_name,
-              "v": searchInfo[this.searchData[key]._fl_elem_name]
+              "v": _val
             });
           }
         }
@@ -173,7 +181,8 @@ export class DriverComponent implements OnInit {
           (response => {
             console.log(' this.componentsData before');
             console.log(this.componentsData);
-            this.componentsData.push({ component: ListTableComponent, data: response['results'] });
+            this.inputData = response['results'];
+            //this.componentsData.push({ component: ListTableComponent, data: response['results'] });
             this.listdata = this.generalService.getResult(response).results.rows;
             console.log(' this.componentsData after');
             console.log(this.componentsData);

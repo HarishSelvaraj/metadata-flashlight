@@ -54,6 +54,18 @@ def_opts={
     search_Options.reqbody.filter = searchData.reqbody.filter;
     return this.http.post(environment.apiUrl + _apiOptions, search_Options);
   }
+
+  addData(searchData,_apiOptions){
+    this.def_opts;
+    //let search_Options=_.extend(this.def_opts,searchData);
+    let search_Options = this.def_opts;
+    search_Options.reqbody.oper = searchData.reqbody.oper;
+    search_Options.reqbody.lookup = searchData.reqbody.lookup;
+    search_Options.reqbody.filter = searchData.reqbody.filter;
+    return this.http.post(environment.apiUrl + _apiOptions, search_Options);
+  }
+
+
   GetMenuList(): Observable<any> {
     return this.http.post(environment.apiUrl + 'getMetaTableInfo', this.params);
   }
@@ -182,3 +194,4 @@ def_opts={
     return res;
   }
 }
+

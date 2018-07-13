@@ -22,6 +22,7 @@ export class ListTableComponent implements OnInit, CompenentInterface {
 
   rows: Array<any> = [];
   @Input() helpers;
+  @Input() inputData;
   @ViewChild(MatPaginator) paginator1: MatPaginator;
   pageLength = 0;
   pageSize = 5;
@@ -122,7 +123,7 @@ export class ListTableComponent implements OnInit, CompenentInterface {
 
       "dbModel": "sqlModel",
       "database": "mssql",
-      "tablename": this.helpers._fl_base_table
+      "tablename": this.inputData._fl_base_table
     }
 
     let reqDataSearch = {

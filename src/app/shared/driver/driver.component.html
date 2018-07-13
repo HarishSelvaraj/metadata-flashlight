@@ -1,5 +1,21 @@
-<div *ngFor="let components of componentsData">
-  <app-search-document [components]="components"></app-search-document>
-</div>
+
+<!-- <app-list-table [inputData]="inputData"></app-list-table> -->
 <!-- <div>LIST DATA:</div>
 <div>{{listdata | json}}</div> -->
+<div class="page_layout">
+<div class="page_header"></div>
+<div class="page_body" fxLayout="row">
+  <div class="page_search col-md-3" fxFlex="25">
+    <div *ngFor="let components of componentsData">
+      <app-search-document [components]="components"></app-search-document>
+    </div>
+  </div>
+  <div class="page-list col-md-9" fxFlex="75">
+    <app-list-table [inputData]="inputData"></app-list-table>
+  </div>
+</div>
+<div class="page-list1 col-md-9" fxFlex="75">
+
+</div>
+
+</div>
