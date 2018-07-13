@@ -7,11 +7,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 //import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatTabsModule, MatTooltipModule,
+import {
+  MatTabsModule, MatTooltipModule,
   MatChipsModule, MatTableModule,
   MatPaginatorModule, MatSortModule,
   MatInputModule, MatSelectModule,
-  MatDividerModule, MatCheckboxModule, MatDialogModule, MatSidenavModule, MatCardModule, MatButtonToggleModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+  MatDividerModule, MatCheckboxModule, MatDialogModule, MatSidenavModule, MatCardModule, MatButtonToggleModule, MatDatepickerModule, MatNativeDateModule
+} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { RouterModule, Routes } from '@angular/router';
@@ -29,7 +31,7 @@ import { ComponentLoaderDirective } from '../directives/component-loader.directi
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { ButtonComponent } from './button/button.component';
 //import { DocListComponent } from './doc-list/doc-list.component'; 
-  import { LabelComponent } from './label/label.component';
+import { LabelComponent } from './label/label.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { NumberComponent } from './number/number.component';
 import { ModalComponent } from './modal/modal.component';
@@ -89,15 +91,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  exports: [    
+  exports: [
     ListTableComponent,
     PageHeaderComponent,
     SearchLayoutComponent,
     ComponentLoaderDirective
   ],
-  entryComponents: [SearchLayoutComponent, InputTextComponent,SearchDocumentComponent, 
-    SelectComponent, DatePickerComponent, ButtonComponent, LabelComponent, 
-    TextareaComponent, ModalComponent,NumberComponent,DriverComponent,ListTableComponent],
+  entryComponents: [SearchLayoutComponent, InputTextComponent, SearchDocumentComponent,
+    SelectComponent, DatePickerComponent, ButtonComponent, LabelComponent,
+    TextareaComponent, ModalComponent, NumberComponent, DriverComponent, ListTableComponent],
   providers: [DocumentManagerService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

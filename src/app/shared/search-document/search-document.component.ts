@@ -20,7 +20,6 @@ export class SearchDocumentComponent implements OnInit {
   }
 
   loadComponent() {
-
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.components.component);
     let viewContainerRef = this.appComponentLoader.viewContainerRef;
     viewContainerRef.clear();

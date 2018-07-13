@@ -31,7 +31,6 @@ export class SearchLayoutComponent implements OnInit {
   constructor(private http: HttpClient, public dialog: MatDialog) { }
 
   ngOnInit() {
-debugger;
     for (let key in this.helpers.details) {
       if (this.helpers.details[key]._fl_elem_type == "SELECT") {
         var code;

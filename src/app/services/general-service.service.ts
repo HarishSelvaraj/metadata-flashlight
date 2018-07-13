@@ -47,16 +47,11 @@ def_opts={
 
   getMetaSearch(searchData,_apiOptions){
     this.def_opts;
-    console.log(searchData);
-    console.log(this.def_opts);
-    debugger;
     //let search_Options=_.extend(this.def_opts,searchData);
     let search_Options = this.def_opts;
     search_Options.reqbody.oper = searchData.reqbody.oper;
     search_Options.reqbody.lookup = searchData.reqbody.lookup;
     search_Options.reqbody.filter = searchData.reqbody.filter;
-    
-    console.log(search_Options);
     return this.http.post(environment.apiUrl + _apiOptions, search_Options);
   }
   GetMenuList(): Observable<any> {
@@ -77,7 +72,6 @@ def_opts={
   }
   getUserData(api, requestData, searchtype) {
     let reqData;
-    debugger;
     // if (searchtype == 'searchList' || searchtype == 'addUserList') {
     //   reqData = {
     //     "dbModel": "sqlModel",
@@ -101,7 +95,6 @@ def_opts={
     search_Options.reqbody.oper = requestData.reqbody.oper;
     search_Options.reqbody.lookup = requestData.reqbody.lookup;
     search_Options.reqbody.filter = requestData.reqbody.filter;
-    debugger;
     return this.http.post(environment.apiUrl + api, reqData);
   }
   searchUsesData(api, requestData) {
@@ -143,8 +136,6 @@ def_opts={
       }
 
       for (let key in conditionData) {
-        console.log('i am in condition data inside service');
-        console.log(requestData[key]);
         if (key != "baseTable") {
           if (requestData[key] != "") {
             reqData['condition'][key] = conditionData[key];
@@ -155,8 +146,6 @@ def_opts={
     } else {
       reqData = requestData;
     }
-    console.log('end of service');
-    console.log(reqData);
     // return reqData;
     return this.http.post(environment.apiUrl + api, reqData);
   }
