@@ -50,7 +50,6 @@ export class ListTableComponent implements OnInit, CompenentInterface {
   }
   tableShow = false;
   ngOnInit() {
-    debugger;
     this.helpers;
     // this.getRows();
 

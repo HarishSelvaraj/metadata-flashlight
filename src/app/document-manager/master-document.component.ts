@@ -59,7 +59,7 @@ export class MasterDocumentComponent implements OnInit {
                 this.documentData['master'][key].details.push(this.documentData['details'][items]);
               }
             }
-          } debugger;
+          } 
           if (this.documentData['master'][key]._fl_doc_type == 'E') {
             this.documentManagerService.searchData['baseTable'] = this.documentData['master'][key]._fl_base_table;
             // this.componentsData.push({ component: ButtonComponent, data: this.documentData['master'][key] });
