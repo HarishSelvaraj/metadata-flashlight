@@ -25,6 +25,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { DriverComponent } from '../shared/driver/driver.component';
 import { SharedModule } from '../shared/shared.module';
+import { ModalComponent } from '../shared/modal/modal.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -43,6 +44,7 @@ export const appRoutes: Routes = [{
     //{ path: 'document-manager/:apiLink', loadChildren: '../document-manager/master-document.module#MasterDocumentModule' },
     { path: 'document-manager/:baseName', loadChildren: '../document-manager/master-document.module#MasterDocumentModule' },
     { path: 'driver/:baseName', component: DriverComponent },
+    { path: 'driver/:baseName/add', component: ModalComponent },
   ]
 }
 ]
