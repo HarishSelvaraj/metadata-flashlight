@@ -6,12 +6,13 @@
 <div class="page_header"></div>
 <div class="page_body" fxLayout="row">
   <div class="page_search col-md-3" fxFlex="25">
-    <div *ngFor="let components of componentsData">
+    <app-search-layout [_opts]="_opts" [formType]="formType" (btnCmpClick)="tiggerBtnClick($event)" (navClick)="triggerNav($event)"></app-search-layout>
+    <!--<div *ngFor="let components of componentsData">
       <app-search-document [components]="components"></app-search-document>
-    </div>
+    </div>-->
   </div>
   <div class="page-list col-md-9" fxFlex="75">
-    <app-list-table [inputData]="inputData"></app-list-table>
+    <app-list-table  [_opts]="_opts" [inputData]="inputData" [basename]="baseName"></app-list-table>
   </div>
 </div>
 <div class="page-list1 col-md-9" fxFlex="75">

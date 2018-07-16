@@ -76,7 +76,7 @@ export class DocListComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   detailsData(row) {
-    this.router.navigate(['/document-manager', row._fl_base_name]);
+    this.router.navigate(['/driver', row._fl_base_name]);
   }
 
 }

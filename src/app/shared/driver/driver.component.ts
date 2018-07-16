@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GeneralServiceService } from '../../services/general-service.service';
 //import { SearchLayoutComponent } from '../search-layout/search-layout.component';
@@ -22,16 +22,25 @@ export class DriverComponent implements OnInit {
   metaData;
   _opts;
   listdata;
-  inputData:any=[];
+  inputData: any = [];
+  formType = 'search';
   @Input() componentsData: Array<any> = [];
+  @ViewChild(ListTableComponent) listCmp: ListTableComponent;
   // @Input() inputData: Array<any> = [];
   constructor(private router: Router, private route: ActivatedRoute, private generalService: GeneralServiceService, private documentManagerService: DocumentManagerService) {
     this.route.params.subscribe(params => {
-      this.baseName = params.baseName;
+      this.baseName = params['baseName'];
     });
 
   }
+  triggerNav = () => {
 
+    this.router.navigate(['/driver', this.baseName, 'add']);
+  }
+  tiggerBtnClick = (obj) => {
+    debugger;
+    this.listCmp.doSomething(obj);
+  }
   ngOnInit() {
     //  1 Primary Base Name
     // Primary Operation
@@ -46,113 +55,113 @@ export class DriverComponent implements OnInit {
     }
 
     this.metaData = {};
-    let _lrenderSearch = (err, tObj) => {
-      // whatever
+    //let _lrenderSearch = (err, tObj) => {
+    //  // whatever
 
-      console.log('tObj');
-      console.log(tObj);
-      let searchObj = tObj.metaData.detail.results.rows;
-      this.searchData = searchObj;
-      for (let key in searchObj) {
-        if (searchObj[key]._fl_elem_type == "SELECT") {
-          this.componentsData.push({
-            component: SelectComponent,
-            data: {
-              dafaultValue: searchObj[key]._fl_default_value,
-              placeHolder: searchObj[key]._fl_elem_label,
-              elementName: searchObj[key]._fl_elem_name
-            }
-          });
-        }
-        if (searchObj[key]._fl_elem_type == "TEXT") {
-          this.componentsData.push({
-            component: InputTextComponent,
-            data: {
-              dafaultValue: searchObj[key]._fl_default_value,
-              placeHolder: searchObj[key]._fl_elem_label,
-              elementName: searchObj[key]._fl_elem_name
-            }
-          });
-        }
-        if (searchObj[key]._fl_elem_type == "LABEL") {
-          this.componentsData.push({
-            component: LabelComponent,
-            data: {
-              dafaultValue: searchObj[key]._fl_default_value,
-              placeHolder: searchObj[key]._fl_elem_label,
-              elementName: searchObj[key]._fl_elem_name
-            }
-          });
-        }
-        if (searchObj[key]._fl_elem_type == "TEXTAREA") {
-          this.componentsData.push({
-            component: TextareaComponent,
-            data: {
-              dafaultValue: searchObj[key]._fl_default_value,
-              placeHolder: searchObj[key]._fl_elem_label,
-              elementName: searchObj[key]._fl_elem_name
-            }
-          });
-        }
-        if (searchObj[key]._fl_elem_type == "DATE" || searchObj[key]._fl_elem_type == "DATETIME") {
-          this.componentsData.push({
-            component: DatePickerComponent,
-            data: {
-              dafaultValue: searchObj[key]._fl_default_value,
-              placeHolder: searchObj[key]._fl_elem_label,
-              elementName: searchObj[key]._fl_elem_name
-            }
-          });
-        }
-        if (searchObj[key]._fl_elem_type == "NUMBER") {
-          this.componentsData.push({
-            component: NumberComponent,
-            data: {
-              dafaultValue: searchObj[key]._fl_default_value,
-              placeHolder: searchObj[key]._fl_elem_label,
-              elementName: searchObj[key]._fl_elem_name
-            }
-          });
-        }
-        if (searchObj[key]._fl_elem_type == "BUTTON") {
-          this.componentsData.push({
-            component: ButtonComponent,
-            data: {
-              dafaultValue: searchObj[key]._fl_default_value,
-              placeHolder: searchObj[key]._fl_elem_label,
-              elementName: searchObj[key]._fl_elem_name
-            }
-          });
-        }
-        //this.componentsData.push({ component: SelectComponent,data:[] });
-      }
+    //  console.log('tObj');
+    //  console.log(tObj);
+    //  let searchObj = tObj.metaData.detail.results.rows;
+    //  this.searchData = searchObj;
+    //  for (let key in searchObj) {
+    //    if (searchObj[key]._fl_elem_type == "SELECT") {
+    //      this.componentsData.push({
+    //        component: SelectComponent,
+    //        data: {
+    //          dafaultValue: searchObj[key]._fl_default_value,
+    //          placeHolder: searchObj[key]._fl_elem_label,
+    //          elementName: searchObj[key]._fl_elem_name
+    //        }
+    //      });
+    //    }
+    //    if (searchObj[key]._fl_elem_type == "TEXT") {
+    //      this.componentsData.push({
+    //        component: InputTextComponent,
+    //        data: {
+    //          dafaultValue: searchObj[key]._fl_default_value,
+    //          placeHolder: searchObj[key]._fl_elem_label,
+    //          elementName: searchObj[key]._fl_elem_name
+    //        }
+    //      });
+    //    }
+    //    if (searchObj[key]._fl_elem_type == "LABEL") {
+    //      this.componentsData.push({
+    //        component: LabelComponent,
+    //        data: {
+    //          dafaultValue: searchObj[key]._fl_default_value,
+    //          placeHolder: searchObj[key]._fl_elem_label,
+    //          elementName: searchObj[key]._fl_elem_name
+    //        }
+    //      });
+    //    }
+    //    if (searchObj[key]._fl_elem_type == "TEXTAREA") {
+    //      this.componentsData.push({
+    //        component: TextareaComponent,
+    //        data: {
+    //          dafaultValue: searchObj[key]._fl_default_value,
+    //          placeHolder: searchObj[key]._fl_elem_label,
+    //          elementName: searchObj[key]._fl_elem_name
+    //        }
+    //      });
+    //    }
+    //    if (searchObj[key]._fl_elem_type == "DATE" || searchObj[key]._fl_elem_type == "DATETIME") {
+    //      this.componentsData.push({
+    //        component: DatePickerComponent,
+    //        data: {
+    //          dafaultValue: searchObj[key]._fl_default_value,
+    //          placeHolder: searchObj[key]._fl_elem_label,
+    //          elementName: searchObj[key]._fl_elem_name
+    //        }
+    //      });
+    //    }
+    //    if (searchObj[key]._fl_elem_type == "NUMBER") {
+    //      this.componentsData.push({
+    //        component: NumberComponent,
+    //        data: {
+    //          dafaultValue: searchObj[key]._fl_default_value,
+    //          placeHolder: searchObj[key]._fl_elem_label,
+    //          elementName: searchObj[key]._fl_elem_name
+    //        }
+    //      });
+    //    }
+    //    if (searchObj[key]._fl_elem_type == "BUTTON") {
+    //      this.componentsData.push({
+    //        component: ButtonComponent,
+    //        data: {
+    //          dafaultValue: searchObj[key]._fl_default_value,
+    //          placeHolder: searchObj[key]._fl_elem_label,
+    //          elementName: searchObj[key]._fl_elem_name
+    //        }
+    //      });
+    //    }
+    //    //this.componentsData.push({ component: SelectComponent,data:[] });
+    //  }
 
-      this.componentsData.push({
-        component: ButtonComponent,
-        data: {
-          dafaultValue: '',
-          placeHolder: 'search',
-          searchDetailsInd: true
-        }
-      });
+    //  this.componentsData.push({
+    //    component: ButtonComponent,
+    //    data: {
+    //      dafaultValue: '',
+    //      placeHolder: 'search',
+    //      searchDetailsInd: true
+    //    }
+    //  });
 
-    }
+    //}
 
-    let _lcallback = function (err, tObj, retObj, _callback) {
-      tObj.generalService.getMetaSearch(tObj._opts, 'search').subscribe(response => {
-        tObj.metaData[retObj] = tObj.generalService.getResult(response);
+    //let _lcallback = function (err, tObj, retObj, _callback) {
+    //  tObj.generalService.getMetaSearch(tObj._opts, 'search').subscribe(response => {
+    //    tObj.metaData[retObj] = tObj.generalService.getResult(response);
 
-        if (typeof (_callback) === "function") {
-          tObj._opts.reqbody.lookup = "META_DETAIL";
-          _callback(null, tObj, "detail", function (err, tObj) {
-            _lrenderSearch(err, tObj);
-          });
-        }
-      });
+    //    if (typeof (_callback) === "function") {
+    //      tObj._opts.reqbody.lookup = "META_DETAIL";
+    //      _callback(null, tObj, "detail", function (err, tObj) {
+    //        _lrenderSearch(err, tObj);
+    //      });
+    //    }
+    //  });
 
-    }
+    //}
 
-    _lcallback(null, this, "master", _lcallback);
+    //_lcallback(null, this, "master", _lcallback);
 
     this.generalService.langUpdated.subscribe(
       (lang) => {

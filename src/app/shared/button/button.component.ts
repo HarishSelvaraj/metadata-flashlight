@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ModalComponent } from '../modal/modal.component';
 import { GeneralServiceService } from '../../services/general-service.service';
@@ -17,25 +17,28 @@ export class ButtonComponent implements OnInit {
 
   searchData: any;
 
+  @Output() onClickBtn  = new EventEmitter();
+
   ngOnInit() {
 
   }
 
   buttonAction() {
 
-    if (this.helpers.editDetailsInd == true) {
-      const dialogRef = this.dialog.open(ModalComponent, {
-        width: '800px',
-        height: '400px',
-        data: this.helpers.editDetails,
-        disableClose: true
-      });
-    } else if (this.helpers.searchDetailsInd == true) {
-      this.service.searchTable();
-    } else if (this.helpers.addUserInd == true) {
-      this.service.addUser();
-    } else if(this.helpers.editUserInd == true) {
-      this.service.editUser();
-    }
+    this.onClickBtn.emit();
+    //if (this.helpers.editDetailsInd == true) {
+    //  const dialogRef = this.dialog.open(ModalComponent, {
+    //    width: '800px',
+    //    height: '400px',
+    //    data: this.helpers.editDetails,
+    //    disableClose: true
+    //  });
+    //} else if (this.helpers.searchDetailsInd == true) {
+    //  this.service.searchTable();
+    //} else if (this.helpers.addUserInd == true) {
+    //  this.service.addUser();
+    //} else if(this.helpers.editUserInd == true) {
+    //  this.service.editUser();
+    //}
   }
 }

@@ -1,5 +1,9 @@
-<form class="example-form">
+
   <mat-form-field class="example-full-width">
-    <input matInput (change)="setInput($event)" [(ngModel)]="helpers.dafaultValue" [ngModelOptions]="{standalone: true}" placeholder="{{helpers.placeHolder}}">
+    <input matInput 
+           (change)="setInput($event)" 
+           name="{{helpers.placeHolder}}" 
+           [(ngModel)]="helpers.dafaultValue" 
+           [ngModelOptions]="{standalone: true}" 
+           placeholder="{{helpers.placeHolder}}">
   </mat-form-field>
-</form>

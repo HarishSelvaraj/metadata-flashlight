@@ -45,6 +45,11 @@ def_opts={
     "database": "mssql"
   }
 
+  createUser(search_Options, _apiOptions) {
+    debugger;
+    return this.http.post(environment.apiUrl + _apiOptions, search_Options);
+  }
+
   getMetaSearch(searchData,_apiOptions){
     this.def_opts;
     //let search_Options=_.extend(this.def_opts,searchData);

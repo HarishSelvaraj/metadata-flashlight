@@ -159,5 +159,7 @@ mat-button-toggle-group {
 }
 
 .table-container {
-  margin-bottom: 220px !important;
+  /*margin-bottom: 220px !important;*/
+  height:100%;
+  overflow:auto;
 }

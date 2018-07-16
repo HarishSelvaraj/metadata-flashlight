@@ -12,6 +12,7 @@ import { MatTableDataSource } from '@angular/material';
 import { ButtonComponent } from '../button/button.component';
 import { DocumentManagerService } from '../../document-manager/services/document-manager.service';
 import { ModalComponent } from '../modal/modal.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-list-table',
@@ -44,12 +45,48 @@ export class ListTableComponent implements OnInit, CompenentInterface {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
   @Output() messageEvent = new EventEmitter<string>();
+  @Input() _opts;
+  @Input() basename;
   message = 'ChangeView';
 
-  constructor(private service: GeneralServiceService, public dialog: MatDialog, private documentManagerService: DocumentManagerService) {
+  constructor(private service: GeneralServiceService,
+    public dialog: MatDialog,
+    private documentManagerService: DocumentManagerService,
+    private loader: NgxSpinnerService) {
 
   }
   tableShow = false;
+  doSomething = (obj) => {
+    debugger;
+    this._opts.reqbody.filter = [];
+    this.loader.show();
+    for (let key in obj) {
+      if (obj[key].data.dafaultValue) {
+        
+        //  "t": "@eq", "k": "_fl_doc_name", "v": [this.baseName + "_SEARCH"] 
+        //this.helpers.details[key]._fl_default_value = row[this.helpers.details[key]._fl_elem_name];
+        let _val = [];
+        _val.push(obj[key].data.dafaultValue);
+
+        this._opts.reqbody.filter.push({
+          "t": "@eq",
+          "k": obj[key].data.elementName,
+          "v": _val
+        });
+      }
+    }
+    this._opts.reqbody.lookup = this.basename;
+    //this._opts.reqbody.filter = [];
+    this.service.getMetaSearch(this._opts, 'search').subscribe
+      (response => {
+        debugger;
+        this.loader.hide();
+        this.inputData = this.service.getResult(response)['results'];
+        this.inputData.cols = this.inputData.cols.filter(x => x != "num");
+        //this.inputData.rows = this.inputData.rows.find(x => x != "NUM");
+        //this.componentsData.push({ component: ListTableComponent, data: response['results'] });       
+      });
+  }
   ngOnInit() {
     this.helpers;
     // this.getRows();

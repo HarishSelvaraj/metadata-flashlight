@@ -1,6 +1,7 @@
 import { Component, OnInit, ComponentFactoryResolver, ViewChild, Input } from '@angular/core';
 import { ComponentLoaderDirective } from '../../directives/component-loader.directive';
 import { CompenentInterface } from '../../shared/component.interface';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-search-document',
@@ -25,6 +26,9 @@ export class SearchDocumentComponent implements OnInit {
     viewContainerRef.clear();
     let componentRef = viewContainerRef.createComponent(componentFactory);
     (<CompenentInterface>componentRef.instance).helpers = this.components.data;
+    if (this.components.component == ButtonComponent) {
+      (<ButtonComponent>componentRef.instance).onClickBtn = this.components.onAction;
+    }
   }
 
 }

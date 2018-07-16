@@ -1,5 +1,6 @@
-<mat-icon class="mat-icon material-icons" (click)="close()">
+<!--<mat-icon class="mat-icon material-icons" (click)="close()">
   close</mat-icon>
 <div *ngFor="let components of componentsData">
   <app-search-document [components]="components"></app-search-document>
-</div>
+</div>-->
+<app-search-layout [_opts]="_opts" [formType]="formType" (btnCmpClick)="tiggerBtnClick($event)"></app-search-layout>

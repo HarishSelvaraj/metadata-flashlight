@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { MasterModule } from './master/master.module';
 import { HttpClientModule } from '@angular/common/http';
 import { GeneralServiceService } from './services/general-service.service';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
 //import { ComponentLoaderDirective } from './directives/component-loader.directive';
 
 @NgModule({
@@ -18,7 +20,9 @@ import { GeneralServiceService } from './services/general-service.service';
     BrowserModule,
     BrowserAnimationsModule,
     MasterModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule,
+    ToastModule.forRoot()
   ],
   providers: [GeneralServiceService],
   bootstrap: [AppComponent]

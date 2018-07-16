@@ -94,7 +94,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   exports: [
     ListTableComponent,
     PageHeaderComponent,
-    SearchLayoutComponent,
     ComponentLoaderDirective
   ],
   entryComponents: [SearchLayoutComponent, InputTextComponent, SearchDocumentComponent,
